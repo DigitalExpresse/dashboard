@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {handleChange, submitConnectionForm} from "./ConnectionPageService.tsx";
 import './connectionPage.css'
+import {fetchConnection} from "./ConnectionPageApi.tsx";
 
 export default function ConnectionPage() {
 
@@ -89,6 +90,7 @@ export default function ConnectionPage() {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
+                                onClick={() => { fetchConnection(formData.email, formData.password) }}
                                 sx={{mt: 1, mb: 2, borderRadius: 3, backgroundColor: "#5062f6"}}>
                                 Se connecter
                             </Button>

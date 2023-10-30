@@ -1,4 +1,5 @@
 import './styles/App.css'
+import './styles/index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ConnectionPage from "./pages/connectionPage/ConnectionPage.tsx";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage.tsx";

@@ -1,3 +1,5 @@
+import {fetchConnection} from "./ConnectionPageApi.tsx";
+
 export const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -20,8 +22,9 @@ export const handleChange = (event: { target: { name: string; value: string; }; 
     });
 };
 
-export const submitConnectionForm = (event: { preventDefault: () => void; },setErrors: (arg0: any) => void, formData: { email: string; password: string; remember: any; }) => {
+export const submitConnectionForm = (event: { preventDefault: () => void; },setErrors: (arg0: any) => void, formData: { email: string; password: string; remember: any; }, setLoading) => {
     event.preventDefault();
+
     let isValid = true;
     const newErrors: any = {};
 
@@ -40,9 +43,23 @@ export const submitConnectionForm = (event: { preventDefault: () => void; },setE
         return;
     }
 
-    console.log({
-        email: formData.email,
-        password: formData.password,
-        remember: formData.remember,
-    });
+    setLoading(true);
+
+    fetchConnection(formData.email, formData.password)
+        // .then((response) => {
+        //     setLoading(false);
+        //     if (response.status === 200) {
+        //         setErrors({invalidCredentials: false})
+        //     }
+        //     if (response.status === 401 || response.status === 404) {
+        //         setErrors({invalidCredentials: true})
+        //         setTimeout(() => {
+        //             setErrors({invalidCredentials: false})
+        //         }, 3000);
+        //     }
+        // })
+        // .catch(() => {
+        //     setLoading(false);
+        // });
+
 };

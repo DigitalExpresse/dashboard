@@ -1,4 +1,4 @@
-import {ConnectionForm} from "../../components/ConnectionForm.tsx";
+import {ConnectionForm} from "./components/ConnectionForm.tsx";
 import './ConnectionPage.css';
 import logo from "../../assets/images/img.png";
 

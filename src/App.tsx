@@ -3,6 +3,7 @@ import './styles/index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ConnectionPage from "./pages/connectionPage/ConnectionPage.tsx";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage.tsx";
+import DashboardPage from "./pages/dashboardPage/DashboardPage.tsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage/>} />
                 <Route path="/connection" element={<ConnectionPage/>} />
                 <Route path="/" element={<ConnectionPage/>} />
+                <Route path="/dashboard" element={<DashboardPage/>} />
             </Routes>
         </BrowserRouter>
 

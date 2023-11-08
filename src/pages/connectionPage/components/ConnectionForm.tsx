@@ -1,58 +1,39 @@
-import {handleChange, submitConnectionForm} from "../pages/connectionPage/ConnectionPageService.tsx";
-import {CircularProgress, Link} from "@mui/material";
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FormManager } from "../FormManager.tsx";
+import { submitConnectionForm } from "../ConnectionPageService.tsx";
+import { CircularProgress, Link } from "@mui/material";
 
 export function ConnectionForm() {
-
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         remember: false,
     });
 
     const [formErrors, setFormErrors] = useState({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         invalidCredentials: false,
+        errorServeur: "",
     });
 
     const [loaderIsActive, setLoaderIsActive] = useState(false);
 
-
     const hasInvalidCredentials = formErrors.invalidCredentials && !loaderIsActive;
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setLoaderIsActive(true);
+        await submitConnectionForm(e, setFormErrors, formData, navigate);
+        setLoaderIsActive(false);
+    };
 
     return (
         <>
-            <form
-                onSubmit={(e) => {
-                    setLoaderIsActive(true);
-                    submitConnectionForm(e, setFormErrors, formData)
-                        .then((response) => {
-                            if(response){
-                                window.location.href = "/admin";
-                            }
-
-                            else {
-                                setLoaderIsActive(false);
-                                if (response === false) {
-                                    setFormErrors({
-                                        ...formErrors,
-                                        invalidCredentials: true,
-                                    });
-                                }
-                            }
-
-                        })
-                        .catch((error) => {
-                            setLoaderIsActive(false);
-                            console.log(error)
-                        })
-
-                }}
-                noValidate
-                className={"!mt-1 w-full"}
-            >
-                <div className={"flex justify-center flex-col"}>
+            <form onSubmit={handleSubmit} noValidate className={"!mt-1 w-full"}>
+            <div className={"flex justify-center flex-col"}>
                     <label htmlFor="email" className="mb-4 block text-sm font-medium leading-3 text-gray-900">Email</label>
                     <div>
                         <input
@@ -65,7 +46,7 @@ export function ConnectionForm() {
                             autoComplete="email"
                             autoFocus
                             value={formData.email}
-                            onChange={(e) => handleChange(e, setFormData, formData, setFormErrors, formErrors)}
+                            onChange={(e) => FormManager.handleChangeFormConnection(e, setFormData, formData, setFormErrors, formErrors)}
                         />
                         <p className={"mb-6 ml-1 mt-1.5 text-xs text-alert"}>{formErrors.email}</p>
                     </div>
@@ -79,7 +60,7 @@ export function ConnectionForm() {
                             id="password"
                             autoComplete="current-password"
                             value={formData.password}
-                            onChange={(e) => handleChange(e, setFormData, formData, setFormErrors, formErrors)}
+                            onChange={(e) => FormManager.handleChangeFormConnection(e, setFormData, formData, setFormErrors, formErrors)}
                             className={
                                 "block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                             }
@@ -107,6 +88,7 @@ export function ConnectionForm() {
                     className={hasInvalidCredentials ? "!bg-alert rounded text-white !mt-3 !mb-4 text-md w-full py-1.5" : "!bg-primary py-1.5 text-white w-full rounded !mt-3 !mb-4 !text-base"}
                 >
                     {hasInvalidCredentials && "Identifiants incorrects"}
+                    {formErrors.errorServeur && "Erreur serveur"}
                     {!hasInvalidCredentials && "Se connecter"}
                     {loaderIsActive && <CircularProgress size={22} className={"!text-white ml-4"}
 

@@ -26,13 +26,16 @@ instance.interceptors.response.use(
 
 const handle401Error = async (error: { response: { status: number; }; }, originalRequest: any) => {
     if (error.response.status === 401 && !originalRequest._retry) {
+
         originalRequest._retry = true;
 
         // Appel à la route refresh-token
         await instance.post('http://localhost:3001/api/admin/refresh-token');
 
         // Réessaie la requête avec les nouveaux tokens
-        return instance(originalRequest);
+        await instance(originalRequest)
+
+        return Promise.reject(error);
     }
 }
 

@@ -1,22 +1,14 @@
-export const fetchConnection = (email: string, password: string) => {
+import {instance} from "../../utils/axios_instance.tsx";
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+export const fetchConnection = async (email: string, password: string) => {
 
-    const raw = JSON.stringify({
+    const data = {
         email,
         password,
-    });
-
-    const requestOptions: any = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
     };
 
-    fetch("http://localhost:3001/api/admin/connection", requestOptions)
-        .then((response) => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+    const response = await instance.post('/admin/connection', data);
+    console.log(response);
+
+    return response;
 }

@@ -6,12 +6,14 @@ export const validateEmail = (email: string) => {
 };
 
 export const validatePassword = (password: string) => {
-    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d{2})[A-Za-z\d@$!%*?&]{8,}$/;
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     return re.test(password);
-};
+}
 
-export const handleChange = (event: { target: { name: string; value: string; }; }, setFormData: (arg0: any) => void, formData: any, setErrors: (arg0: any) => void, errors: any) => {
-    const { name, value } = event.target;
+export const handleChange = (event: {
+    target: { name: string; value: string; };
+}, setFormData: (arg0: any) => void, formData: any, setErrors: (arg0: any) => void, errors: any) => {
+    const {name, value} = event.target;
     setFormData({
         ...formData,
         [name]: value,
@@ -22,7 +24,18 @@ export const handleChange = (event: { target: { name: string; value: string; }; 
     });
 };
 
-export const submitConnectionForm = (event: { preventDefault: () => void; },setErrors: (arg0: any) => void, formData: { email: string; password: string; remember: any; }, setLoading) => {
+export const submitConnectionForm = async (
+
+    event: { preventDefault: () => void; },
+    setErrors: (arg0: any) => void,
+    formData: {
+        email: string;
+        password: string;
+        remember: any;
+        },
+
+    ) => {
+
     event.preventDefault();
 
     let isValid = true;
@@ -34,7 +47,7 @@ export const submitConnectionForm = (event: { preventDefault: () => void; },setE
     }
 
     if (!validatePassword(formData.password)) {
-        newErrors.password = 'Le mot de passe doit contenir au moins 8 caractères dont 2 chiffres, une majuscule et une minuscule';
+        newErrors.password = 'Veuillez saisir un mot de passe valide';
         isValid = false;
     }
 
@@ -43,23 +56,14 @@ export const submitConnectionForm = (event: { preventDefault: () => void; },setE
         return;
     }
 
-    setLoading(true);
 
-    fetchConnection(formData.email, formData.password)
-        // .then((response) => {
-        //     setLoading(false);
-        //     if (response.status === 200) {
-        //         setErrors({invalidCredentials: false})
-        //     }
-        //     if (response.status === 401 || response.status === 404) {
-        //         setErrors({invalidCredentials: true})
-        //         setTimeout(() => {
-        //             setErrors({invalidCredentials: false})
-        //         }, 3000);
-        //     }
-        // })
-        // .catch(() => {
-        //     setLoading(false);
-        // });
-
-};
+    return  fetchConnection(formData.email, formData.password)
+        .then((response) => {
+            console.log(response);
+            return true
+        })
+        .catch((error) => {
+            console.log(error);
+            return false
+        })
+    };

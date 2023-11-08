@@ -1,57 +1,24 @@
-// Import necessary dependencies
-import { useState } from 'react';
-import {
-    Container,
-    CssBaseline,
-    Grid,
-    Box,
-    Typography,
-} from '@mui/material';
-import './ConnectionPage.css';
 import {ConnectionForm} from "../../components/ConnectionForm.tsx";
+import './ConnectionPage.css';
 
-// Define the main connection page component
 export default function ConnectionPage() {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        remember: false,
-    });
-
-    const [errors, setErrors] = useState({
-        email: '',
-        password: '',
-        invalidCredentials: false,
-    });
-
-    const [loading, setLoading] = useState(false);
 
     return (
-        <div className={"background"}>
-            <Container sx={{ height: " 100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <h1 style={{ margin: "0 auto 40px auto", display: "block" }}>
+        <div className={"bg-connection-page px-2"}>
+            <div className={"!flex !h-screen !flex-col !justify-center"}>
+                <h1 className={"block mt-0 mx-auto mb-[40px]"}>
                     Digital
-                    <span style={{ color: "#58B5EF" }}>Express</span>
+                    <span className={"text-blueLogo text-3xl"}>Express</span>
                 </h1>
-                <Container component="main" maxWidth="sm" sx={{ backgroundColor: "white", padding: 3, borderRadius: 4, boxShadow: "rgba(0, 0, 0, 0.08) 0px 6px 30px" }}>
-                    <CssBaseline />
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                        <Grid sx={{ alignSelf: "self-start" }}>
-                            <Typography sx={{ fontWeight: "600" }} component="h1" variant="h5">
-                                Connexion
-                            </Typography>
-                        </Grid>
-                        <ConnectionForm
-                            formData={formData}
-                            errors={errors}
-                            loading={loading}
-                            setFormData={setFormData}
-                            setErrors={setErrors}
-                            setLoading={setLoading}
-                        />
-                    </Box>
-                </Container>
-            </Container>
+                <div className={"bg-white !p-6 rounded-xl shadow-xl w-[95%] !max-w-xl mx-auto"}>
+                    <div className={"flex flex-col items-center"}>
+                        <div className={"self-start"}>
+                            <h2 className={"!font-semibold text-2xl mb-5"}>Connexion</h2>
+                        </div>
+                        <ConnectionForm/>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

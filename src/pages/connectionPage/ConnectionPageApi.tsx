@@ -7,8 +7,5 @@ export const fetchConnection = async (email: string, password: string) => {
         password,
     };
 
-    const response = await instance.post('/admin/connection', data);
-    console.log(response);
-
-    return response;
+    return await instance.post('/admin/connection', data);
 }

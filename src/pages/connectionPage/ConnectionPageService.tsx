@@ -6,8 +6,7 @@ export const validateEmail = (email: string) => {
 };
 
 export const validatePassword = (password: string) => {
-    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return re.test(password);
+    return password.length > 0;
 }
 
 export const handleChange = (event: {
@@ -47,7 +46,7 @@ export const submitConnectionForm = async (
     }
 
     if (!validatePassword(formData.password)) {
-        newErrors.password = 'Veuillez saisir un mot de passe valide';
+        newErrors.password = 'Veuillez saisir un mot de passe';
         isValid = false;
     }
 
@@ -58,8 +57,7 @@ export const submitConnectionForm = async (
 
 
     return  fetchConnection(formData.email, formData.password)
-        .then((response) => {
-            console.log(response);
+        .then(() => {
             return true
         })
         .catch((error) => {

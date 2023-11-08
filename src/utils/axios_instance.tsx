@@ -30,11 +30,6 @@ const handle401Error = async (error: { response: { status: number; }; }, origina
 
         // Appel à la route refresh-token
         await instance.post('http://localhost:3001/api/admin/refresh-token');
-        console.log("refresh token")
-
-        // Mettez à jour les cookies avec les nouveaux tokens
-        // (Assurez-vous que ces cookies sont sécurisés et httpOnly)
-        // ...
 
         // Réessaie la requête avec les nouveaux tokens
         return instance(originalRequest);

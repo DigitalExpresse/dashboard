@@ -13,8 +13,7 @@ function App() {
             <Routes>
                 <Route path="*" element={<NotFoundPage/>} />
                 <Route path="/connection" element={<ConnectionPage/>} />
-                <Route path="/" element={<ConnectionPage/>} />
-                <Route path="/dashboard" element={<DashboardPage/>} />
+                <Route path="/" element={<DashboardPage/>} />
             </Routes>
         </BrowserRouter>
 

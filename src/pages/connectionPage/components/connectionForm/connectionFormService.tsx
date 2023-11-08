@@ -1,6 +1,5 @@
-
-import { fetchConnection } from "./ConnectionPageApi.tsx";
-import { FormManager } from "./FormManager.tsx";
+import { fetchConnection } from "./connectionFormApi.tsx";
+import { FormManager } from "../../../../utils/FormManager.tsx";
 
 export const submitConnectionForm = async (
     event: { preventDefault: () => void },
@@ -12,16 +11,18 @@ export const submitConnectionForm = async (
     },
     navigate: (arg0: string) => void
 ): Promise<any> => {
-
     event.preventDefault();
 
-    if (!FormManager.validateFormConnection(formData, setErrors)) {
+    const fieldErrors = FormManager.validateForm(formData);
+
+    if (Object.keys(fieldErrors).length > 0) {
+        setErrors(fieldErrors);
         return false;
     }
 
     try {
         const res = await fetchConnection(formData.email, formData.password);
-        navigate("/dashboard");
+        navigate("/");
         return res;
     } catch (error) {
         handleErrorResponse(error, setErrors);

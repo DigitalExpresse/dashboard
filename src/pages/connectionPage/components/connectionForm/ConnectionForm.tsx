@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormManager } from "../FormManager.tsx";
-import { submitConnectionForm } from "../ConnectionPageService.tsx";
+import { FormManager } from "../../../../utils/FormManager.tsx";
+import { submitConnectionForm } from "./connectionFormService.tsx";
 import { CircularProgress, Link } from "@mui/material";
 
 export function ConnectionForm() {
@@ -31,9 +31,12 @@ export function ConnectionForm() {
     };
 
     return (
-        <>
+        <div className={"flex flex-col items-center"}>
+            <div className={"self-start"}>
+                <h2 className={"!font-semibold text-2xl mb-5"}>Connexion</h2>
+            </div>
             <form onSubmit={handleSubmit} noValidate className={"!mt-1 w-full"}>
-            <div className={"flex justify-center flex-col"}>
+                <div className={"flex justify-center flex-col"}>
                     <label htmlFor="email" className="mb-4 block text-sm font-medium leading-3 text-gray-900">Email</label>
                     <div>
                         <input
@@ -46,7 +49,7 @@ export function ConnectionForm() {
                             autoComplete="email"
                             autoFocus
                             value={formData.email}
-                            onChange={(e) => FormManager.handleChangeFormConnection(e, setFormData, formData, setFormErrors, formErrors)}
+                            onChange={(e) => FormManager.handleChange(e, setFormData, formData, setFormErrors, formErrors)}
                         />
                         <p className={"mb-6 ml-1 mt-1.5 text-xs text-alert"}>{formErrors.email}</p>
                     </div>
@@ -60,7 +63,7 @@ export function ConnectionForm() {
                             id="password"
                             autoComplete="current-password"
                             value={formData.password}
-                            onChange={(e) => FormManager.handleChangeFormConnection(e, setFormData, formData, setFormErrors, formErrors)}
+                            onChange={(e) => FormManager.handleChange(e, setFormData, formData, setFormErrors, formErrors)}
                             className={
                                 "block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                             }
@@ -90,7 +93,7 @@ export function ConnectionForm() {
                     {hasInvalidCredentials && "Identifiants incorrects"}
                     {formErrors.errorServeur && "Erreur serveur"}
                     {!hasInvalidCredentials && "Se connecter"}
-                    {loaderIsActive && <CircularProgress size={22} className={"!text-white ml-4"}
+                    {loaderIsActive && <CircularProgress size={18} className={"!text-white ml-4"}
 
                     />}
                 </button>
@@ -101,6 +104,6 @@ export function ConnectionForm() {
                     </Link>
                 </div>
             </form>
-        </>
+        </div>
     );
 }

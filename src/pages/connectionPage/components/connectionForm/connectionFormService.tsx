@@ -7,10 +7,11 @@ export const submitConnectionForm = async (
     formData: {
         email: string;
         password: string;
-        remember: any;
+        remember: boolean;
     },
     navigate: (arg0: string) => void
 ): Promise<any> => {
+
     event.preventDefault();
 
     const fieldErrors = FormManager.validateForm(formData);
@@ -30,7 +31,7 @@ export const submitConnectionForm = async (
 };
 
 const handleErrorResponse = (error: any, setErrors: (arg0: any) => void) => {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 401 || error.response.status === 404) {
         setErrors((prevErrors: any) => ({
             ...prevErrors,
             invalidCredentials: true,

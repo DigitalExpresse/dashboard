@@ -1,34 +1,19 @@
-import {instance} from "../../utils/axios_instance";
+import Navbar from "./navbar/Navbar.tsx";
 
 const DashboardPage = () => {
 
-    const routeTest = () => {
-
-        let config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: 'http://localhost:3001/api/admin/1',
-        };
-
-        instance.request(config)
-            .then((response: { data: any; }) => {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch((error: any) => {
-                if(error.response.status === 401) {
-                    console.log(error);
-                    console.log("error")
-                }
-            });
-
-    }
     return (
-        <div>
-            <button onClick={(e) => {
-                e.preventDefault();
-                routeTest();
-
-            }} className={"text-center h-screen m-auto"}>Dashboard</button>
+        <div className={"bg-light"}>
+            <Navbar/>
+            <div className={"relative top-[55px]"}>
+                <div className={"bg-green-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-red-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-blue-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-yellow-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-green-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-red-400 h-64 w-1/2 m-auto"}>Test</div>
+                <div className={"bg-blue-400 h-64 w-1/2 m-auto"}>Test</div>
+            </div>
         </div>
     );
 };

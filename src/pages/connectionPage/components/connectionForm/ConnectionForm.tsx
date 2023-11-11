@@ -94,7 +94,7 @@ export function ConnectionForm() {
                     >
                         {hasInvalidCredentials && "Identifiants incorrects"}
                         {formErrors.errorServeur && "Erreur serveur"}
-                        {!hasInvalidCredentials && "Se connecter"}
+                        {!hasInvalidCredentials && !formErrors.errorServeur && !loaderIsActive && "Se connecter"}
                         {loaderIsActive && <CircularProgress size={18} className={"!text-white ml-4"}
 
                         />}
@@ -109,5 +109,5 @@ export function ConnectionForm() {
             </div>
 
         </div>
-            );
+    );
 }

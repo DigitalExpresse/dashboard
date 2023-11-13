@@ -17,8 +17,14 @@ function App() {
         <NavbarConsumer>
             <SidebarConsumer>
                <BrowserRouter>
-                   <Navbar/>
-                   <Sidebar/>
+                   {
+                       window.location.href.includes("utilisateur") |
+                       window.location.href == import.meta.env.VITE_APP_URL &&
+                           <>
+                               <Navbar/>
+                               <Sidebar/>
+                           </>
+                   }
                     <Routes>
                         <Route path="*" element={<NotFoundPage/>} />
                         <Route path="/connection" element={<ConnectionPage/>} />

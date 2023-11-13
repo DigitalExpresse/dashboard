@@ -4,7 +4,7 @@ export const SidebarContext = createContext<any>(null);
 
 export const SidebarConsumer = ({ children }: PropsWithChildren) => {
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen]: [boolean, any] = useState(false);
 
     return (
         <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>

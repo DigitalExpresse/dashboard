@@ -10,6 +10,7 @@ function Sidebar() {
     const sidebarRef: any = useRef(null);
 
     const handleFocusOut = (event: any) => {
+        console.log("focus out")
         const relatedTarget = event.relatedTarget || document.activeElement;
         if (sidebarRef.current && !sidebarRef.current.contains(relatedTarget)) {
             setSidebarOpen(false);
@@ -17,10 +18,6 @@ function Sidebar() {
     };
 
     const [isMenuOpen, setMenuOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setMenuOpen(!isMenuOpen);
-    };
 
     useEffect(() => {
         if (sidebarOpen) {
@@ -30,7 +27,6 @@ function Sidebar() {
     }, [sidebarOpen]);
 
     return (
-        // On va ajouter une animation de transition pour le sidebar avec tailwind
             <AnimatePresence>
                 {sidebarOpen && (
                     <motion.div
@@ -43,6 +39,10 @@ function Sidebar() {
                         id={"sidebar"}
                         tabIndex={1}
                         onBlur={handleFocusOut}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            e.preventDefault()
+                        }}
                         className={
                             "h-screen w-[280px] z-50 absolute focus:outline-0 bg-[#FAFAFAFF] px-[16px] flex flex-col gap-3"
                         }
@@ -58,15 +58,21 @@ function Sidebar() {
                                 Tableau de bord
                             </h3>
 
-                            <DropdownUser isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+                            <DropdownUser sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
                         </div>
                     </motion.div>
                 )}
-                <div
-                    className={
-                        "fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-40 backdrop-filter backdrop-blur-[0.2px]"
-                    }
-                ></div>
+
+                {
+                    // @ts-ignore
+                    sidebarOpen &&
+                    <div
+                        className={
+                        "fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-40 backdrop-filter backdrop-blur-[0.2px] transition-opacity duration-300"
+                        }
+                    >
+                    </div>
+                }
             </AnimatePresence>
     );
 }

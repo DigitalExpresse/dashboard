@@ -1,6 +1,6 @@
 import {ConnectionForm} from "./components/connectionForm/ConnectionForm.tsx";
 import './ConnectionPage.css';
-import logo from "../../assets/images/img.png";
+import logo from "../../assets/images/logoWithText.png";
 
 export default function ConnectionPage() {
 

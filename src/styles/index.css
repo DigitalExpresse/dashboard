@@ -25,3 +25,7 @@ input:focus, textarea:focus, select:focus, input:active, textarea:active, select
     }
 
 }
+
+.test {
+    background-color: rgba(250, 250, 250);
+}

@@ -1,14 +1,19 @@
 import {Avatar} from "@mui/material";
-import avatar from "../../../assets/images/img_1.png";
+import avatar from "../../../assets/images/avatar.png";
 import MenuAltIcon from "../../../icons/MenuAltIcon.tsx";
 import NotificationIcon from "../../../icons/NotificationIcon.tsx";
 import './navbar.css'
+import {SidebarContext} from "../../../contexts/SidebarContext.tsx";
+import {useContext} from "react";
 
 const Navbar = () => {
-    return (
-        <header className="flex fixed w-full pb-1 px-5 !py-2 justify-between items-center shadow bg-lightTransparent backdrop-filter backdrop-blur-[10px] z-50">
 
-            <MenuAltIcon/>
+    const {setSidebarOpen} = useContext(SidebarContext);
+
+    return (
+        <header className="flex fixed w-full pb-1 px-5 !py-2 justify-between items-center shadow bg-lightTransparent backdrop-filter backdrop-blur-[10px] z-30">
+
+            <MenuAltIcon onClick={() => {setSidebarOpen(true)}}/>
 
             <div className={"flex gap-3 items-center"}>
 

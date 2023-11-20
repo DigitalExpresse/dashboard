@@ -14,7 +14,7 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
 
-    const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(false);
+    const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(true);
     const url = window.location.href;
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                 className={
                     url.includes(principalPath)
                         ? "bg-primaryLight flex gap-2 items-center pl-[8px] py-[6px] pr-[15px] focus:outline-0 rounded-xl cursor-pointer"
-                        : "flex gap-2 items-center pl-[8px] py-[6px] pr-[15px] focus:!bg-gray-300 focus:!bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer"
+                        : "flex gap-2 items-center pl-[8px] py-[6px] pr-[15px] bg-gray-300 bg-opacity-40 focus:!bg-gray-300 focus:!bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer"
                 }
                 onClick={toggleMenu}
             >
@@ -54,7 +54,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                         {items.map((item) => (
                             <NavLink
                                 key={item.path}
-                                className={"font-medium flex items-center"}
+                                className={"font-medium flex !items-center justify-items-center gap-2 text-[13px] text-textDark"}
                                 to={item.path}
                                 onClick={() => setSidebarOpen(false)}
                             >

@@ -1,7 +1,16 @@
 import './notFoundPage.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
  const NotFoundPage = () => {
+
+     const navigate = useNavigate();
+
+     useEffect(() => {
+            setTimeout(() => {
+                navigate("/");
+            }, 5000);
+     }, []);
     return (
             <div className="bg-purple">
 

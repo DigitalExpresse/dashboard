@@ -1,7 +1,4 @@
-
-
 const DashboardPage = () => {
-
 
     return (
         <div className={"bg-light text-textDark"}>

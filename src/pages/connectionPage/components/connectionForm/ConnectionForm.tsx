@@ -90,7 +90,7 @@ export function ConnectionForm() {
 
                     <button
                         type="submit"
-                        className={hasInvalidCredentials ? "!bg-alert rounded text-white !mt-3 !mb-4 text-md w-full py-1.5" : "!bg-primary py-1.5 text-white w-full rounded !mt-3 !mb-4 !text-base"}
+                        className={hasInvalidCredentials || formErrors.errorServeur ? "!bg-alert rounded text-white !mt-3 !mb-4 text-md w-full py-1.5" : "!bg-primary py-1.5 text-white w-full rounded !mt-3 !mb-4 !text-base"}
                     >
                         {hasInvalidCredentials && "Identifiants incorrects"}
                         {formErrors.errorServeur && "Erreur serveur"}

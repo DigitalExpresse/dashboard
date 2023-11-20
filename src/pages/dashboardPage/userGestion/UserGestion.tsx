@@ -5,5 +5,4 @@ const UserGestion = () => {
         </div>
     );
 };
-
 export default UserGestion;

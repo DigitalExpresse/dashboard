@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import { SidebarContext } from "../../../../contexts/SidebarContext.tsx";
+import { SidebarContext } from "../../contexts/SidebarContext.tsx";
 
 interface DropdownProps {
     label: string;

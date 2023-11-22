@@ -1,4 +1,4 @@
-import { instance } from "../../../../utils/axios_instance.tsx";
+import { instance } from "../../utils/axios_instance.tsx";
 
 export const fetchConnection = async (email: string, password: string) => {
     const data = {

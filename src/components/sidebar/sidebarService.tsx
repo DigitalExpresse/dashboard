@@ -1,6 +1,6 @@
-import UserIcon from "../../../icons/UserIcon.tsx";
-import iconReservation from "../../../assets/icons/iconReservation.png";
-import MenuCardIcon from "../../../icons/MenuCardIcon.tsx";
+import UserIcon from "../../icons/UserIcon.tsx";
+import iconReservation from "../../assets/icons/iconReservation.png";
+import MenuCardIcon from "../../icons/MenuCardIcon.tsx";
 
 export const dropdownUserData = {
     label: "Utilisateur",

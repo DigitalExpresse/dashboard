@@ -1,5 +1,5 @@
 import { fetchConnection } from "./connectionFormApi.tsx";
-import { FormManager } from "../../../../utils/FormManager.tsx";
+import { FormManager } from "../../utils/FormManager.tsx";
 
 export const submitConnectionForm = async (
     event: { preventDefault: () => void },

@@ -19,6 +19,7 @@ export default {
         success: '#17BF63',
 
         dark: '#000000',
+        grayLight: 'rgba(250,250,250,0.8)',
         light: 'rgb(255, 252, 252)',
         lightTransparent: "rgb(255, 252, 252, 0.8)",
 

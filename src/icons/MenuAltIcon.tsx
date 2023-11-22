@@ -8,8 +8,8 @@ function MenuAltIcon({onClick}) {
                 data-name="Line Color"
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon line-color"
-                width={"25px"}
-                height={"25px"}
+                width={"27px"}
+                height={"27px"}
             >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

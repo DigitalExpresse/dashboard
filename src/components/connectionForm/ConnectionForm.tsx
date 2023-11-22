@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormManager } from "../../../../utils/FormManager.tsx";
+import { FormManager } from "../../utils/FormManager.tsx";
 import { submitConnectionForm } from "./connectionFormService.tsx";
 import { CircularProgress, Link } from "@mui/material";
 

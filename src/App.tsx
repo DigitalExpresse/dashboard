@@ -7,10 +7,10 @@ import DashboardPage from "./pages/dashboardPage/DashboardPage.tsx";
 import {SidebarConsumer} from "./contexts/SidebarContext.tsx";
 import {NavbarConsumer} from "./contexts/NavbarConntext.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
-import {SidebarMobileContainer} from "./components/sidebar/SidebarMobileContainer.tsx";
+import {SidebarMobileContainer} from "./components/sidebar/mobile/SidebarMobileContainer.tsx";
 import UserGestion from "./pages/dashboardPage/userGestion/UserGestion.tsx";
 import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
-import {SidebarDesktopContainer} from "./components/sidebar/SidebarDesktopContainer.tsx";
+import {SidebarDesktopContainer} from "./components/sidebar/desktop/SidebarDesktopContainer.tsx";
 
 function App() {
 
@@ -23,7 +23,23 @@ function App() {
                 <SidebarConsumer>
                    <BrowserRouter>
                        <Navbar/>
-                       {isDesktopScreen ? <SidebarDesktopContainer/> : <SidebarMobileContainer/>}
+                       {!isDesktopScreen &&
+                           <>
+                           <SidebarMobileContainer/>
+                            <Routes>
+                                <Route path="*" element={<NotFoundPage/>} />
+                                <Route path="/connection" element={<ConnectionPage/>} />
+                                <Route path="/" element={<DashboardPage/>} />
+                                <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
+                                <Route path="/utilisateur/profil" element={<UserGestion/>} />
+                            </Routes>
+                           </>
+                }
+
+                {isDesktopScreen &&
+                    <div className={"flex flex-row"}>
+
+                    <SidebarDesktopContainer/>
                         <Routes>
                             <Route path="*" element={<NotFoundPage/>} />
                             <Route path="/connection" element={<ConnectionPage/>} />
@@ -31,6 +47,8 @@ function App() {
                             <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
                             <Route path="/utilisateur/profil" element={<UserGestion/>} />
                         </Routes>
+                    </div>
+                }
                     </BrowserRouter>
                 </SidebarConsumer>
             </NavbarConsumer>

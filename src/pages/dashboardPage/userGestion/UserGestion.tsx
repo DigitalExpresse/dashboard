@@ -1,7 +1,7 @@
 const UserGestion = () => {
     return (
         <div>
-            <h1 className={"h-full"}>UserGestion</h1>
+            <h1 className={"h-full"}></h1>
         </div>
     );
 };

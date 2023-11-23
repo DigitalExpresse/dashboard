@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
-import { SidebarContext } from "../../contexts/SidebarContext.tsx";
-import './sidebar.css';
+import { SidebarContext } from "../../../contexts/SidebarContext.tsx";
+import '../sidebar.css';
 import {SidebarMobile} from "./SidebarMobile.tsx";
-import {blockOrUnblockScroll, focusSidebarForBlur} from "./sidebarService.tsx";
+import {blockOrUnblockScroll, focusSidebarForBlur} from "../sidebarService.tsx";
 
 
 export function SidebarMobileContainer() {

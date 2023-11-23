@@ -1,8 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
 import {SidebarContext} from "../../contexts/SidebarContext.tsx";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {AnimatePresence, motion} from "framer-motion";
-import {NavLink} from "react-router-dom";
 
 interface DropdownProps {
     label: string;
@@ -11,8 +8,9 @@ interface DropdownProps {
     principalPath: string;
 }
 
+// @ts-ignore
 export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
-    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
+    const { sidebarOpenDesktop } = useContext(SidebarContext);
 
     const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(true);
     const url = window.location.href;
@@ -21,7 +19,7 @@ export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, pri
         if (url.includes(principalPath)) {
             setDropdownOpen(true);
         }
-    }, [sidebarOpen, principalPath, url]);
+    }, [sidebarOpenDesktop, principalPath, url]);
 
     const toggleMenu = () => {
         setDropdownOpen(!dropdownOpen);

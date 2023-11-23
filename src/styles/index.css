@@ -25,3 +25,7 @@ input:focus, textarea:focus, select:focus, input:active, textarea:active, select
     }
 
 }
+
+html {
+    overflow-y: hidden;
+}

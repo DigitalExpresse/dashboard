@@ -12,7 +12,7 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
-    const { sidebarOpenMobile, setSidebarOpenMobile } = useContext(SidebarContext);
+    const { sidebarOpenMobile, setSidebarOpenMobile, sidebarOpenDesktop, setSidebarOpenDesktop } = useContext( SidebarContext );
 
     const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(false);
     const url = window.location.href;
@@ -21,7 +21,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
         if (url.includes(principalPath)) {
             setDropdownOpen(true);
         }
-    }, [sidebarOpenMobile, principalPath, url]);
+    }, [sidebarOpenMobile, sidebarOpenDesktop, principalPath, url]);
 
     const toggleMenu = () => {
         setDropdownOpen(!dropdownOpen);
@@ -56,7 +56,10 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                                 key={item.path}
                                 className={"font-medium flex !items-center justify-items-center gap-2 text-[13px] text-textDark"}
                                 to={item.path}
-                                onClick={() => setSidebarOpenMobile(false)}
+                                onClick={() => {
+                                    setSidebarOpenMobile(false)
+                                    setSidebarOpenDesktop(false)
+                                }}
                             >
                 <span
                     className={

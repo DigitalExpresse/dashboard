@@ -1,10 +1,18 @@
 import {motion} from "framer-motion";
-import logo from "../../assets/images/logoWithoutText.png";
-import DropdownSmall from "../dropdownSmall/DropdownSmall.tsx";
-import {dropdownMenuAndCardData, dropdownReservationData, dropdownUserData} from "./sidebarData.tsx";
+import logo from "../../../assets/images/logoWithoutText.png";
+import DropdownSmall from "../../dropdownSmall/DropdownSmall.tsx";
+import {dropdownMenuAndCardData, dropdownReservationData, dropdownUserData} from "../dropdownSidebarData.tsx";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import {useContext} from "react";
+import {SidebarContext} from "../../../contexts/SidebarContext.tsx";
 
-export function SidebarDesktop () {
+export function CloseSidebarDesktop () {
+
+    const { setSidebarOpenDesktop } = useContext(SidebarContext);
+
+    const openSidebar = () => {
+        setSidebarOpenDesktop(true);
+    }
 
     return (
 
@@ -17,7 +25,7 @@ export function SidebarDesktop () {
                 exit={{ x: -280, opacity: 0 }}
                 transition={{ type: "tween", duration: 0.3 }}
                 className={
-                    "h-screen fixed w-[88px] z-50 focus:outline-0 bg-grayLight flex flex-col gap-3 text-textDark border-x-2 border-dotted"
+                    "h-screen w-[88px] z-50 focus:outline-0 bg-grayLight flex flex-col gap-3 text-textDark border-x-2 border-dotted"
                 }
             >
                 <img
@@ -51,6 +59,7 @@ export function SidebarDesktop () {
 
                     <div
                         className={"absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-grayLight"}
+                        onClick={openSidebar}
                     >
                         <KeyboardArrowRightIcon className={"!text-[20px] text-center ml-[1px] mb-1 text-gray-600"} />
                     </div>

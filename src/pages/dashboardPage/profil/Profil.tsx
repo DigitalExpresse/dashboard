@@ -3,7 +3,7 @@ const Profil = () => {
     return (
         <div>
 
-            <h1 className={"h-full"}>Profil</h1>
+            <h1 className={"h-full"}></h1>
 
         </div>
     );

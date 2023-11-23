@@ -7,20 +7,23 @@ import DashboardPage from "./pages/dashboardPage/DashboardPage.tsx";
 import {SidebarConsumer} from "./contexts/SidebarContext.tsx";
 import {NavbarConsumer} from "./contexts/NavbarConntext.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
-import SidebarMobileContainer from "./components/sidebar/Sidebar.tsx";
+import {SidebarMobileContainer} from "./components/sidebar/SidebarMobileContainer.tsx";
 import UserGestion from "./pages/dashboardPage/userGestion/UserGestion.tsx";
 import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
+import {SidebarDesktopContainer} from "./components/sidebar/SidebarDesktopContainer.tsx";
 
 function App() {
 
-  return (
+    const isDesktopScreen = window.innerWidth > 1200;
+
+    return (
     <>
         <ScreenSizeConsumer>
             <NavbarConsumer>
                 <SidebarConsumer>
                    <BrowserRouter>
-                           <Navbar/>
-                           <SidebarMobileContainer/>
+                       <Navbar/>
+                       {isDesktopScreen ? <SidebarDesktopContainer/> : <SidebarMobileContainer/>}
                         <Routes>
                             <Route path="*" element={<NotFoundPage/>} />
                             <Route path="/connection" element={<ConnectionPage/>} />
@@ -33,7 +36,7 @@ function App() {
             </NavbarConsumer>
         </ScreenSizeConsumer>
     </>
-  )
+    )
 }
 
 export default App

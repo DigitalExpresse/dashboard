@@ -9,7 +9,7 @@ import {ScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 
 const Navbar = () => {
 
-    const {setSidebarOpen} = useContext(SidebarContext);
+    const {setSidebarOpenMobile} = useContext(SidebarContext);
     const {isDesktopScreen} = useContext(ScreenSizeContext);
 
     return (
@@ -17,7 +17,7 @@ const Navbar = () => {
 
             <div>
                 {!isDesktopScreen && (
-                    <MenuAltIcon onClick={() => {setSidebarOpen(true)}}/>
+                    <MenuAltIcon onClick={() => {setSidebarOpenMobile(true)}}/>
                 )}
             </div>
 

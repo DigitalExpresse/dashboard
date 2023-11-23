@@ -12,16 +12,16 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
-    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
+    const { sidebarOpenMobile, setSidebarOpenMobile } = useContext(SidebarContext);
 
-    const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(true);
+    const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(false);
     const url = window.location.href;
 
     useEffect(() => {
         if (url.includes(principalPath)) {
             setDropdownOpen(true);
         }
-    }, [sidebarOpen, principalPath, url]);
+    }, [sidebarOpenMobile, principalPath, url]);
 
     const toggleMenu = () => {
         setDropdownOpen(!dropdownOpen);
@@ -56,16 +56,16 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                                 key={item.path}
                                 className={"font-medium flex !items-center justify-items-center gap-2 text-[13px] text-textDark"}
                                 to={item.path}
-                                onClick={() => setSidebarOpen(false)}
+                                onClick={() => setSidebarOpenMobile(false)}
                             >
                 <span
                     className={
-                        "mr-[15px] text-2xl" + (url.includes(item.path) ? " text-primary" : "")
+                        "mr-[15px] text-2xl" + (url.includes(item.path) ? " text-primary" : " text-gray-700")
                     }
                 >
                   &#8226;
                 </span>
-                                <span className={"mt-0.5"}>{item.label}</span>
+                                <span className={"mt-0.5 text-gray-600"}>{item.label}</span>
                             </NavLink>
                         ))}
                     </motion.div>

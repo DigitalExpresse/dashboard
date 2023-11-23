@@ -4,10 +4,11 @@ export const SidebarContext = createContext<any>(null);
 
 export const SidebarConsumer = ({ children }: PropsWithChildren) => {
 
-    const [sidebarOpen, setSidebarOpen]: [boolean, any] = useState(true);
+    const [sidebarOpenMobile, setSidebarOpenMobile]: [boolean, any] = useState(false);
+    const [sidebarOpenDesktop, setSidebarOpenDesktop]: [boolean, any] = useState(true);
 
     return (
-        <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>
+        <SidebarContext.Provider value={{ sidebarOpenMobile, setSidebarOpenMobile, sidebarOpenDesktop, setSidebarOpenDesktop }}>
             {children}
         </SidebarContext.Provider>
     );

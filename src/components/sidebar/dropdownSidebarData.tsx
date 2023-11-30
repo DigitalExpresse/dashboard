@@ -7,11 +7,11 @@ export const dropdownUserData = {
     items: [
         {
             path: "/utilisateur/gestion-utilisateurs",
-            label: "Gestion des utilisateurs",
+            label: "Utilisateurs",
         },
         {
             path: "/utilisateur/profil",
-            label: "Votre profile",
+            label: "Profile",
         },
     ],
     principalPath : "/utilisateur",
@@ -24,19 +24,19 @@ export const dropdownReservationData = {
     items: [
         {
             path: "/reservation/gestion-reservations",
-            label: "Gestion des reservations",
+            label: "Reservations",
         },
         {
             path: "reservation/tables",
-            label: "Gestion des tables",
+            label: "Tables",
         },
         {
             path:'/reservation/services',
-            label:'Gestion des services'
+            label:'Services'
         },
         {
             path:'/reservation/horaires',
-            label:'Gestion des horaires'
+            label:'Horaires'
         }
     ],
     principalPath : "/reservation",
@@ -52,15 +52,15 @@ export const dropdownMenuAndCardData = {
     items: [
         {
             path: "/carte-et-menu/gestion-cartes",
-            label: "Gestion des cartes",
+            label: "Cartes",
         },
         {
             path: "/carte-et-menu/gestion-menus",
-            label: "Gestion des menus",
+            label: "Menus",
         },
         {
             path: "/carte-et-menu/gestion-produits",
-            label: "Gestion des produits",
+            label: "Produits",
         }
     ],
 

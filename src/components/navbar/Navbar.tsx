@@ -11,9 +11,10 @@ const Navbar = () => {
 
     const {setSidebarOpenMobile} = useContext(SidebarContext);
     const {isDesktopScreen} = useContext(ScreenSizeContext);
+    const url = window.location.href;
 
     return (
-        <header className="flex fixed w-full pb-1 px-5 !pt-4 justify-between items-center bg-grayLight backdrop-filter backdrop-blur-[10px] z-30">
+        <header className={"flex fixed w-full pb-1 px-5 !pt-4 justify-between items-center bg-grayLight backdrop-filter backdrop-blur-[10px] z-30" + (url.includes("connection") ? " hidden" : "")}>
 
             <div>
                 {!isDesktopScreen && (

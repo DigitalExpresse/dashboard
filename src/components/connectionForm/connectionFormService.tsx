@@ -3,21 +3,23 @@ import { FormManager } from "../../utils/FormManager.tsx";
 
 export const submitConnectionForm = async (
     event: { preventDefault: () => void },
-    setErrors: (arg0: any) => void,
+    setFormErrors: (arg0: any) => void,
     formData: {
         email: string;
         password: string;
         remember: boolean;
     },
-    navigate: (arg0: string) => void
+    navigate: (arg0: string) => void,
+    setLoaderIsActive: (arg0: boolean) => void,
 ): Promise<any> => {
+
 
     event.preventDefault();
 
     const fieldErrors = FormManager.validateForm(formData);
 
     if (Object.keys(fieldErrors).length > 0) {
-        setErrors(fieldErrors);
+        setFormErrors(fieldErrors);
         return false;
     }
 
@@ -26,7 +28,8 @@ export const submitConnectionForm = async (
         navigate("/");
         return res;
     } catch (error) {
-        handleErrorResponse(error, setErrors);
+        handleErrorResponse(error, setFormErrors);
+        setLoaderIsActive(false);
     }
 };
 

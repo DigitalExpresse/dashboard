@@ -9,9 +9,10 @@ import {OpenSidebarDesktop} from "./OpenSidebarDesktop.tsx";
 export function SidebarDesktopContainer() {
 
     const { sidebarOpenDesktop } = useContext(SidebarContext);
+    const url = window.location.href;
 
     return (
-        <div id={"sidebarDesktopContainer"} className={"relative z-40"}>
+        <div id={"sidebarDesktopContainer"} className={url.includes("connection") ? "hidden" : "relative z-40"}>
             <AnimatePresence mode="wait">
                 {!sidebarOpenDesktop && <CloseSidebarDesktop />}
                 {sidebarOpenDesktop && <OpenSidebarDesktop />}

@@ -58,7 +58,6 @@ export function OpenSidebarDesktop() {
                     items={dropdownReservationData.items}
                     principalPath={dropdownReservationData.principalPath}
                 />
-
                 <div
                     className={"absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-grayLight"}
                     onClick={closeSidebar}

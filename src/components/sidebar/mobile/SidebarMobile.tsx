@@ -21,7 +21,7 @@ export function SidebarMobile({ sidebarRef, handleFocusOut }) {
                 e.preventDefault();
             }}
             className={
-                "h-screen w-[280px] z-50 absolute focus:outline-0 bg-[#FAFAFAFF] px-[16px] flex flex-col gap-3 text-textDark"
+                "h-screen w-[280px] absolute focus:outline-0 bg-[#FAFAFAFF] px-[16px] flex flex-col gap-3 text-textDark z-[1000]"
             }
         >
             <img

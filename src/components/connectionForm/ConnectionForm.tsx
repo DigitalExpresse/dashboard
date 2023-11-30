@@ -20,14 +20,30 @@ export function ConnectionForm() {
 
     const [loaderIsActive, setLoaderIsActive] = useState(false);
 
-    const hasInvalidCredentials = formErrors.invalidCredentials && !loaderIsActive;
+    const hasInvalidCredentials = formErrors.invalidCredentials;
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoaderIsActive(true);
-        await submitConnectionForm(e, setFormErrors, formData, navigate);
-        setLoaderIsActive(false);
+        try {
+            const res = await submitConnectionForm(e, setFormErrors, formData, navigate, setLoaderIsActive);
+            if (res) {
+                return res;
+            }
+        } catch (error) {
+            setFormErrors((prevErrors: any) => ({
+                ...prevErrors,
+                errorServeur: "Une erreur est survenue",
+            }));
+            setTimeout(() => {
+                setLoaderIsActive(false);
+                setFormErrors((prevErrors: any) => ({
+                    ...prevErrors,
+                    errorServeur: "",
+                }));
+            }, 2000);
+        }
     };
 
     return (
@@ -90,12 +106,12 @@ export function ConnectionForm() {
 
                     <button
                         type="submit"
-                        className={hasInvalidCredentials || formErrors.errorServeur ? "!bg-alert rounded text-white !mt-3 !mb-4 text-md w-full py-1.5" : "!bg-primary py-1.5 text-white w-full rounded !mt-3 !mb-4 !text-base"}
+                        className={hasInvalidCredentials || formErrors.errorServeur ? "!bg-alert rounded text-white !mt-3 !mb-4 text-md w-full py-1.5 flex justify-center items-center !gap-6" : "!bg-primary py-1.5 text-white w-full rounded !mt-3 !mb-4 !text-base flex justify-center items-center !gap-6"}
                     >
                         {hasInvalidCredentials && "Identifiants incorrects"}
                         {formErrors.errorServeur && "Erreur serveur"}
                         {!hasInvalidCredentials && !formErrors.errorServeur && !loaderIsActive && "Se connecter"}
-                        {loaderIsActive && <CircularProgress size={18} className={"!text-white ml-4"}
+                        {loaderIsActive && <CircularProgress size={18} className={"!text-white"}
 
                         />}
                     </button>

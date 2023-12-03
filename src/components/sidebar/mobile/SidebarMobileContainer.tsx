@@ -4,12 +4,13 @@ import { SidebarContext } from "../../../contexts/SidebarContext.tsx";
 import '../sidebar.css';
 import {SidebarMobile} from "./SidebarMobile.tsx";
 import {blockOrUnblockScroll, focusSidebarForBlur} from "../sidebarService.tsx";
+import {useUrlContext} from "../../../contexts/UrlContext.tsx";
 
 
 export function SidebarMobileContainer() {
     const { sidebarOpenMobile, setSidebarOpenMobile } = useContext(SidebarContext);
     const sidebarRef: any = useRef(null);
-    const url = window.location.href;
+    const {currentUrl} = useUrlContext();
 
     const handleFocusOut = (event: any) => {
         const relatedTarget = event.relatedTarget || document.activeElement;
@@ -28,11 +29,10 @@ export function SidebarMobileContainer() {
     }, [sidebarOpenMobile]);
 
     return (
-        <div className={url.includes("connection") ? "hidden" : "z-[1000]"}>
+        <div className={currentUrl.includes("connection") ? "hidden" : "z-[1000]"}>
             <AnimatePresence mode="wait">
                 {sidebarOpenMobile && (
                     <>
-
                         <SidebarMobile sidebarRef={sidebarRef} handleFocusOut={handleFocusOut} />
                         <div
                             className={"fixed top-0 left-0 w-screen h-screen bg-sidebar z-40 backdrop-filter backdrop-blur-[0.2px] transition-opacity duration-300 !overflow-y-scroll"}>

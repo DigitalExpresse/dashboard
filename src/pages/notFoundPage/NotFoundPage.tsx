@@ -1,15 +1,18 @@
 import './notFoundPage.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
  const NotFoundPage = () => {
 
      const navigate = useNavigate();
+        const {setCurrentUrl} = useUrlContext();
 
      useEffect(() => {
             setTimeout(() => {
                 navigate("/");
-            }, 5000);
+                setCurrentUrl("/");
+            }, 2000);
      }, []);
     return (
             <div className="bg-purple">
@@ -36,7 +39,6 @@ import {useEffect} from "react";
                     <div className="star"></div>
                     <div className="star"></div>
                     <div className="star"></div>
-
                 </div>
 
             </div>

@@ -44,7 +44,7 @@ export function CloseSidebarDesktop () {
                     />
 
                     <DropdownSmall
-                        label={"Produit"}
+                        label={dropdownMenuAndCardData.label}
                         icon={dropdownMenuAndCardData.icon}
                         items={dropdownMenuAndCardData.items}
                         principalPath={dropdownMenuAndCardData.principalPath}

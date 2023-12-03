@@ -3,6 +3,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { SidebarContext } from "../../contexts/SidebarContext.tsx";
+import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
 interface DropdownProps {
     label: string;
@@ -15,13 +16,13 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
     const { sidebarOpenMobile, setSidebarOpenMobile, sidebarOpenDesktop, setSidebarOpenDesktop } = useContext( SidebarContext );
 
     const [dropdownOpen, setDropdownOpen]: [boolean, any] = useState(false);
-    const url = window.location.href;
+    const {currentUrl, setCurrentUrl} = useUrlContext();
 
     useEffect(() => {
-        if (url.includes(principalPath)) {
+        if (currentUrl.includes(principalPath)) {
             setDropdownOpen(true);
         }
-    }, [sidebarOpenMobile, sidebarOpenDesktop, principalPath, url]);
+    }, [sidebarOpenMobile, sidebarOpenDesktop, principalPath, currentUrl]);
 
     const toggleMenu = () => {
         setDropdownOpen(!dropdownOpen);
@@ -33,15 +34,15 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                 tabIndex={1}
                 id={"dropdown-" + label}
                 className={
-                    url.includes(principalPath)
+                    currentUrl.includes(principalPath)
                         ? "bg-primaryLight flex gap-2 items-center pl-[8px] py-[6px] pr-[15px] focus:outline-0 rounded-xl cursor-pointer"
                         : "flex gap-2 items-center pl-[8px] py-[6px] pr-[15px] bg-gray-300 bg-opacity-40 focus:!bg-gray-300 focus:!bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer"
                 }
                 onClick={toggleMenu}
             >
                 {icon}
-                <p className={"font-medium" + (url.includes(principalPath) ? " text-primary" : "")}>{label}</p>
-                <ExpandMoreIcon className={"ml-auto" + (url.includes(principalPath) ? " text-primary" : "")} />
+                <p className={"font-medium" + (currentUrl.includes(principalPath) ? " text-primary" : "")}>{label}</p>
+                <ExpandMoreIcon className={"ml-auto" + (currentUrl.includes(principalPath) ? " text-primary" : "")} />
             </div>
             <AnimatePresence>
                 {dropdownOpen && (
@@ -59,11 +60,12 @@ const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }
                                 onClick={() => {
                                     setSidebarOpenMobile(false)
                                     setSidebarOpenDesktop(false)
+                                    setCurrentUrl(item.path)
                                 }}
                             >
                 <span
                     className={
-                        "mr-[15px] text-2xl" + (url.includes(item.path) ? " text-primary" : " text-gray-700")
+                        "mr-[15px] text-2xl" + (currentUrl.includes(item.path) ? " text-primary" : " text-gray-700")
                     }
                 >
                   &#8226;

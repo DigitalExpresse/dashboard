@@ -11,6 +11,9 @@ import {SidebarMobileContainer} from "./components/sidebar/mobile/SidebarMobileC
 import UserGestion from "./pages/dashboardPage/userGestion/UserGestion.tsx";
 import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
 import {SidebarDesktopContainer} from "./components/sidebar/desktop/SidebarDesktopContainer.tsx";
+import Reservation from "./components/reservation/Reservation.tsx";
+import {DropdownSmallProvider} from "./contexts/DropdownSmallContext.tsx";
+import {UrlProvider} from "./contexts/UrlContext.tsx";
 
 function App() {
 
@@ -18,41 +21,39 @@ function App() {
 
     return (
     <>
-        <ScreenSizeConsumer>
-            <NavbarConsumer>
-                <SidebarConsumer>
-                   <BrowserRouter>
-                       <Navbar/>
-                       {!isDesktopScreen &&
-                           <>
-                           <SidebarMobileContainer/>
-                            <Routes>
-                                <Route path="*" element={<NotFoundPage/>} />
-                                <Route path="/connection" element={<ConnectionPage/>} />
-                                <Route path="/" element={<DashboardPage/>} />
-                                <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
-                                <Route path="/utilisateur/profil" element={<UserGestion/>} />
-                            </Routes>
-                           </>
-                }
+        <UrlProvider>
+            <ScreenSizeConsumer>
+                <NavbarConsumer>
+                    <SidebarConsumer>
+                       <BrowserRouter>
 
-                {isDesktopScreen &&
-                    <div className={"flex flex-row"}>
+                            <Navbar/>
+                            <div className={isDesktopScreen ? "flex flex-row" : ""}>
 
-                    <SidebarDesktopContainer/>
-                        <Routes>
-                            <Route path="*" element={<NotFoundPage/>} />
-                            <Route path="/connection" element={<ConnectionPage/>} />
-                            <Route path="/" element={<DashboardPage/>} />
-                            <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
-                            <Route path="/utilisateur/profil" element={<UserGestion/>} />
-                        </Routes>
-                    </div>
-                }
-                    </BrowserRouter>
-                </SidebarConsumer>
-            </NavbarConsumer>
-        </ScreenSizeConsumer>
+                                    {isDesktopScreen && (
+                                        <DropdownSmallProvider>
+                                            <SidebarDesktopContainer/>
+                                        </DropdownSmallProvider>
+                                    )}
+                                    {!isDesktopScreen && <SidebarMobileContainer/>}
+
+                                <Routes>
+                                    <Route path="*" element={<NotFoundPage/>} />
+                                    <Route path="/connection" element={<ConnectionPage/>} />
+                                    <Route path="/" element={<DashboardPage/>} />
+
+                                    <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
+                                    <Route path="/utilisateur/profil" element={<UserGestion/>} />
+                                    <Route path="/reservation/gestion-reservations" element={<Reservation/>} />
+                                </Routes>
+
+                            </div>
+
+                        </BrowserRouter>
+                    </SidebarConsumer>
+                </NavbarConsumer>
+            </ScreenSizeConsumer>
+        </UrlProvider>
     </>
     )
 }

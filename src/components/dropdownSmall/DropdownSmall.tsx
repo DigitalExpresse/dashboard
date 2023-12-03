@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import FlyoutMenu from "../flyoutMenu/FlyoutMenu.tsx"; // Assurez-vous d'importer votre fichier CSS
 import "./dropdownSmall.css";
-import FlyoutMenu from "../FlyoutMenu.tsx"; // Assurez-vous d'importer votre fichier CSS
+import {useDropdownSmallContext} from "../../contexts/DropdownSmallContext.tsx";
+import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
 interface DropdownProps {
     label: string;
@@ -11,17 +13,19 @@ interface DropdownProps {
 
 export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
 
-    const [isHovered, setIsHovered] = useState(false);
-    const url = window.location.href;
-
-
+    // const [isHovered, setIsHovered] = useState(false);
+    const {hoveredDropdown, setHoveredDropdown} = useDropdownSmallContext();
+    const {currentUrl} = useUrlContext();
 
     const handleMouseEnter = () => {
-        setIsHovered(true);
+        setHoveredDropdown(label);
     };
 
-    const handleMouseLeave = () => {
-        setIsHovered(false);
+    const handleMouseLeave = (e) => {
+        if (e.relatedTarget && e.relatedTarget.id === "flyoutMenu" || e.relatedTarget && e.relatedTarget.id.includes("flyoutMenu")) {
+            return;
+        }
+        setHoveredDropdown(null);
     };
 
     return (
@@ -30,18 +34,19 @@ export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, pri
                     tabIndex={0}
                     id={"dropdown-" + label}
                     className={
-                            "flex flex-col gap-1 items-center px-[8px] py-[8px] bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer hover:bg-gray-300 hover:bg-opacity-40"
-                        + (url.includes(principalPath) ? " bg-primaryLight" : "")
+                        "flex flex-col gap-1 items-center px-[8px] py-[8px] bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer hover:bg-gray-300 hover:bg-opacity-40"
+                        + (currentUrl.includes(principalPath) ? " bg-primaryLight" : "")
                     }
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
                     {icon}
-                    <p className={"font-medium !text-[10px] text-center" + (url.includes(principalPath) ? " text-primary" : "")}>{label}</p>
+                    <p className={"font-medium !text-[10px] text-center" + (currentUrl.includes(principalPath) ? " text-primary" : "")}>
+                        {label}
+                    </p>
                 </div>
-                <FlyoutMenu items={items} isHovered={isHovered} setIsHovered={setIsHovered} />
+                <FlyoutMenu items={items} isOpen={hoveredDropdown === label} setIsOpen={setHoveredDropdown} position={{top: "0", left: "83px"}}/>
             </div>
-
     );
 };
 

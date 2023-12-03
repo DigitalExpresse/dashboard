@@ -16,6 +16,7 @@ export default {
         tertiary: '#657786',
 
         alert: '#AA00AA',
+        danger: '#ff5630',
         success: '#17BF63',
 
         dark: '#000000',

@@ -6,7 +6,6 @@ export const ScreenSizeConsumer = ({ children }: PropsWithChildren) => {
 
     const isDesktopScreen= window.innerWidth > 1200;
 
-
     return (
         <ScreenSizeContext.Provider value={{isDesktopScreen}}>
             {children}

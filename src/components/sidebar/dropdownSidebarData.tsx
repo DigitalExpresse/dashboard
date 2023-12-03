@@ -11,7 +11,7 @@ export const dropdownUserData = {
         },
         {
             path: "/utilisateur/profil",
-            label: "Profile",
+            label: "Profil",
         },
     ],
     principalPath : "/utilisateur",
@@ -48,7 +48,7 @@ export const dropdownReservationData = {
 }
 
 export const dropdownMenuAndCardData = {
-    label: "Carte et menu",
+    label: "Produits",
     items: [
         {
             path: "/carte-et-menu/gestion-cartes",

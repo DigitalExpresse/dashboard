@@ -1,15 +1,34 @@
-import {createContext, PropsWithChildren, useState} from "react";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export const SidebarContext = createContext<any>(null);
+interface SidebarContextProps {
+    sidebarOpenMobileIsActive: boolean;
+    setSidebarOpenMobileIsActive: (isActive: boolean) => void;
+    sidebarOpenDesktopIsActive: boolean;
+    setSidebarOpenDesktopIsActive: (isActive: boolean) => void;
+}
 
-export const SidebarConsumer = ({ children }: PropsWithChildren) => {
+export const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
 
-    const [sidebarOpenMobileIsActive, setSidebarOpenMobileIsActive]: [boolean, any] = useState(false);
-    const [sidebarOpenDesktopIsActive, setSidebarOpenDesktopIsActive]: [boolean, any] = useState(false);
+export const SidebarConsumer: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [sidebarOpenMobileIsActive, setSidebarOpenMobileIsActive] = useState<boolean>(false);
+    const [sidebarOpenDesktopIsActive, setSidebarOpenDesktopIsActive] = useState<boolean>(false);
 
     return (
-        <SidebarContext.Provider value={{ sidebarOpenMobileIsActive, setSidebarOpenMobileIsActive, sidebarOpenDesktopIsActive, setSidebarOpenDesktopIsActive }}>
+        <SidebarContext.Provider value={{
+            sidebarOpenMobileIsActive,
+            setSidebarOpenMobileIsActive,
+            sidebarOpenDesktopIsActive,
+            setSidebarOpenDesktopIsActive
+        }}>
             {children}
         </SidebarContext.Provider>
     );
-}
+};
+
+export const useSidebarContext = () => {
+    const context = useContext(SidebarContext);
+    if (!context) {
+        throw new Error('useSidebarContext must be used within a SidebarProvider');
+    }
+    return context;
+};

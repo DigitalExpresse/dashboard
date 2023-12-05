@@ -1,12 +1,12 @@
-import {useContext, useState} from "react";
-import { SidebarContext } from "../../contexts/SidebarContext.tsx";
-import { ScreenSizeContext } from "../../contexts/ScreenSizeContext.tsx";
+import {useState} from "react";
+import {useSidebarContext} from "../../contexts/SidebarContext.tsx";
+import {useScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 import { useUrlContext } from "../../contexts/UrlContext.tsx";
 
 export const useNavbarService = () => {
 
-    const { setSidebarOpenMobileIsActive } = useContext(SidebarContext);
-    const { isDesktopScreen } = useContext(ScreenSizeContext);
+    const { setSidebarOpenMobileIsActive } = useSidebarContext()
+    const { isDesktopScreen } = useScreenSizeContext()
     const { currentUrl } = useUrlContext();
 
     const [dropdownIsFocused, setDropdownIsFocused] = useState(false);

@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { AnimatePresence } from "framer-motion";
-import { SidebarContext } from "../../../contexts/SidebarContext.tsx";
+import {useSidebarContext} from "../../../contexts/SidebarContext.tsx";
 import '../sidebar.css';
 import {CloseSidebarDesktop} from "./closeSidebarDesktop/CloseSidebarDesktop.tsx";
 import {OpenSidebarDesktop} from "./openSidebarDesktop/OpenSidebarDesktop.tsx";
@@ -9,7 +8,7 @@ import {useUrlContext} from "../../../contexts/UrlContext.tsx";
 
 export function SidebarDesktopContainer() {
 
-    const { sidebarOpenDesktopIsActive } = useContext(SidebarContext);
+    const { sidebarOpenDesktopIsActive } = useSidebarContext()
     const {currentUrl} = useUrlContext();
 
     return (

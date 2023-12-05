@@ -3,16 +3,16 @@ import avatar from "../../assets/images/avatar.png";
 import MenuAltIcon from "../../icons/MenuAltIcon.tsx";
 import NotificationIcon from "../../icons/NotificationIcon.tsx";
 import './navbar.css'
-import {SidebarContext} from "../../contexts/SidebarContext.tsx";
-import {useContext, useState} from "react";
-import {ScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
+import {useSidebarContext} from "../../contexts/SidebarContext.tsx";
+import {useState} from "react";
+import {useScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
 import FlyoutMenuNavbar from "../flyoutMenuNavbar/FlyoutMenuNavbar.tsx";
 
 const Navbar = () => {
 
-    const {setSidebarOpenMobileIsActive} = useContext(SidebarContext);
-    const {isDesktopScreen} = useContext(ScreenSizeContext);
+    const {setSidebarOpenMobileIsActive} = useSidebarContext()
+    const {isDesktopScreen} = useScreenSizeContext()
     const {currentUrl} = useUrlContext();
 
     const [dropdownIsFocused, setDropdownIsFocused] = useState(false);

@@ -1,8 +1,8 @@
 // Dropdown.tsx
-import React, { useContext } from "react";
+import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AnimatePresence } from "framer-motion";
-import { SidebarContext } from "../../contexts/SidebarContext.tsx";
+import {useSidebarContext} from "../../contexts/SidebarContext.tsx";
 import { useUrlContext } from "../../contexts/UrlContext.tsx";
 import { useDropdownState } from "./dropdownService.tsx";
 import { DropdownNavigation } from "./DropdownNavigation.tsx";
@@ -15,9 +15,7 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
-    const { setSidebarOpenMobileIsActive, setSidebarOpenDesktopIsActive } = useContext(
-        SidebarContext
-    );
+      const { setSidebarOpenMobileIsActive, setSidebarOpenDesktopIsActive } = useSidebarContext();
     const { currentUrl, setCurrentUrl } = useUrlContext();
     const { dropdownOpen, toggleMenu } = useDropdownState(false, principalPath, currentUrl);
 

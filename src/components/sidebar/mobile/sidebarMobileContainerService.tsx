@@ -1,12 +1,12 @@
-import { useContext, useEffect, useRef } from "react";
-import { SidebarContext } from "../../../contexts/SidebarContext.tsx";
+import {useEffect, useRef } from "react";
+import {useSidebarContext} from "../../../contexts/SidebarContext.tsx";
 import '../sidebar.css';
 import { useUrlContext } from "../../../contexts/UrlContext.tsx";
 import { useDropdownState } from "../../dropdown/dropdownService.tsx";
 
 export const useSidebarMobileContainer = () => {
 
-    const { sidebarOpenMobileIsActive, setSidebarOpenMobileIsActive } = useContext(SidebarContext);
+    const { sidebarOpenMobileIsActive, setSidebarOpenMobileIsActive } = useSidebarContext()
     const { currentUrl } = useUrlContext();
 
     const { dropdownOpen, toggleMenu } = useDropdownState(false, "connection", currentUrl);

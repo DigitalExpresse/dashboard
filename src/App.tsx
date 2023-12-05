@@ -5,15 +5,13 @@ import ConnectionPage from "./pages/connectionPage/ConnectionPage.tsx";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage.tsx";
 import DashboardPage from "./pages/dashboardPage/DashboardPage.tsx";
 import {SidebarConsumer} from "./contexts/SidebarContext.tsx";
-import {NavbarConsumer} from "./contexts/NavbarConntext.tsx";
 import Navbar from "./components/navbar/Navbar.tsx";
 import {SidebarMobileContainer} from "./components/sidebar/mobile/SidebarMobileContainer.tsx";
 import UserGestion from "./pages/dashboardPage/userGestion/UserGestion.tsx";
 import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
 import {SidebarDesktopContainer} from "./components/sidebar/desktop/SidebarDesktopContainer.tsx";
 import Reservation from "./components/reservation/Reservation.tsx";
-import {DropdownSmallProvider} from "./contexts/DropdownSmallContext.tsx";
-import {UrlProvider} from "./contexts/UrlContext.tsx";
+import {UrlConsumer} from "./contexts/UrlContext.tsx";
 
 function App() {
 
@@ -21,19 +19,14 @@ function App() {
 
     return (
     <>
-        <UrlProvider>
+        <UrlConsumer>
             <ScreenSizeConsumer>
-                <NavbarConsumer>
                     <SidebarConsumer>
                        <BrowserRouter>
                             <Navbar/>
                             <div className={isDesktopScreen ? "flex flex-row" : ""}>
 
-                                    {isDesktopScreen && (
-                                        <DropdownSmallProvider>
-                                            <SidebarDesktopContainer/>
-                                        </DropdownSmallProvider>
-                                    )}
+                                    {isDesktopScreen && <SidebarDesktopContainer/>}
                                     {!isDesktopScreen && <SidebarMobileContainer/>}
 
                                 <Routes>
@@ -50,9 +43,8 @@ function App() {
 
                         </BrowserRouter>
                     </SidebarConsumer>
-                </NavbarConsumer>
             </ScreenSizeConsumer>
-        </UrlProvider>
+        </UrlConsumer>
     </>
     )
 }

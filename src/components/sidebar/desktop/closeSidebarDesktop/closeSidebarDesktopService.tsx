@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { SidebarContext } from "../../../../contexts/SidebarContext.tsx";
+import {useSidebarContext} from "../../../../contexts/SidebarContext.tsx";
 
 import {
     dropdownMenuAndCardData,
@@ -8,7 +7,7 @@ import {
 } from "../../dropdownSidebarData.tsx";
 
 export const useCloseSidebarDesktopService = () => {
-    const { setSidebarOpenDesktopIsActive } = useContext(SidebarContext);
+    const { setSidebarOpenDesktopIsActive } = useSidebarContext()
 
     const openSidebar = () => {
         setSidebarOpenDesktopIsActive(true);

@@ -14,7 +14,7 @@ export const DropdownNavigation = ({items, setSidebarOpenMobileIsActive, setSide
             {items.map((item: { path: string | number | bigint | Partial<Path> | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => (
                 <NavLink
                     key={item.path + ""}
-                    className={"font-medium flex !items-center justify-items-center gap-2 text-[13px] text-textDark"}
+                    className={"font-medium flex !items-center justify-items-center gap-2 text-[13px] text-semiDark"}
                     to={item.path + ""}
                     onClick={() => {
                         setSidebarOpenMobileIsActive(false);

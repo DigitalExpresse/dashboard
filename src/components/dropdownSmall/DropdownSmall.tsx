@@ -11,6 +11,7 @@ interface DropdownProps {
 }
 
 export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
+
     const { hoveredDropdown, handleMouseEnter, handleMouseLeave, currentUrl } = useDropdownSmallService();
 
     return (
@@ -25,12 +26,14 @@ export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, pri
                 onMouseEnter={() => handleMouseEnter(label)}
                 onMouseLeave={(e: any) => handleMouseLeave(e)}
             >
+
                 {icon}
                 <p className={"font-medium !text-[10px] text-center" + (currentUrl.includes(principalPath) ? " text-primary" : "")}>
                     {label}
                 </p>
+
             </div>
-            <FlyoutMenu items={items} isOpen={hoveredDropdown === label} setIsOpen={handleMouseLeave} position={{ top: "0", left: "83px" }} />
+            <FlyoutMenu items={items} isOpen={hoveredDropdown === label} setIsOpen={(event: any) => handleMouseLeave(event)} position={{ top: "0", left: "83px" }} />
         </div>
     );
 };

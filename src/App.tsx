@@ -12,6 +12,7 @@ import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
 import {SidebarDesktopContainer} from "./components/sidebar/desktop/SidebarDesktopContainer.tsx";
 import Reservation from "./components/reservation/Reservation.tsx";
 import {UrlConsumer} from "./contexts/UrlContext.tsx";
+import {SpinnerPageLoadConsumer} from "./contexts/SpinnerPageLoadContext.tsx";
 
 function App() {
 
@@ -19,32 +20,35 @@ function App() {
 
     return (
     <>
-        <UrlConsumer>
-            <ScreenSizeConsumer>
-                    <SidebarConsumer>
-                       <BrowserRouter>
-                            <Navbar/>
-                            <div className={isDesktopScreen ? "flex flex-row" : ""}>
+        <SpinnerPageLoadConsumer>
+            <UrlConsumer>
+                <ScreenSizeConsumer>
+                        <SidebarConsumer>
+                           <BrowserRouter>
 
-                                    {isDesktopScreen && <SidebarDesktopContainer/>}
-                                    {!isDesktopScreen && <SidebarMobileContainer/>}
+                                <Navbar/>
+                                <div className={isDesktopScreen ? "flex flex-row" : ""}>
 
-                                <Routes>
-                                    <Route path="*" element={<NotFoundPage/>} />
-                                    <Route path="/connection" element={<ConnectionPage/>} />
-                                    <Route path="/" element={<DashboardPage/>} />
+                                        {isDesktopScreen && <SidebarDesktopContainer/>}
+                                        {!isDesktopScreen && <SidebarMobileContainer/>}
 
-                                    <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
-                                    <Route path="/utilisateur/profil" element={<UserGestion/>} />
-                                    <Route path="/reservation/gestion-reservations" element={<Reservation/>} />
-                                </Routes>
+                                    <Routes>
+                                        <Route path="*" element={<NotFoundPage/>} />
+                                        <Route path="/connection" element={<ConnectionPage/>} />
+                                        <Route path="/" element={<DashboardPage/>} />
 
-                            </div>
+                                        <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
+                                        <Route path="/utilisateur/profil" element={<UserGestion/>} />
+                                        <Route path="/reservation/gestion-reservations" element={<Reservation/>} />
+                                    </Routes>
 
-                        </BrowserRouter>
-                    </SidebarConsumer>
-            </ScreenSizeConsumer>
-        </UrlConsumer>
+                                </div>
+
+                            </BrowserRouter>
+                        </SidebarConsumer>
+                </ScreenSizeConsumer>
+            </UrlConsumer>
+        </SpinnerPageLoadConsumer>
     </>
     )
 }

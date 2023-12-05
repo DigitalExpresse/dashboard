@@ -23,7 +23,9 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={"flex fixed w-full pb-1 px-8 !pt-4 justify-between items-center bg-grayLight backdrop-filter backdrop-blur-[10px] z-30" + (currentUrl.includes("connection") ? " hidden" : "")}>
+        <header className={"flex fixed w-full pb-1 px-8 !pt-4 justify-between items-center bg-primaryBgLight backdrop-filter backdrop-blur-[10px] z-30"
+            + (currentUrl.includes("connection") ? " hidden" : "")}
+        >
 
             <div>
                 {!isDesktopScreen && (

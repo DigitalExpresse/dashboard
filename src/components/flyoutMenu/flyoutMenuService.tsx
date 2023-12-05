@@ -5,16 +5,12 @@ export const useFlyoutMenuService = () => {
 
     const { setCurrentUrl } = useUrlContext();
 
-    const handleMouseLeave = (setIsOpen: any) => {
-        setIsOpen(false);
-    };
-
     const renderNavLink = (item: any, setIsOpen: any) => (
         <NavLink
             id={"flyoutMenu-element-" + item.label}
             className={
-                "block my-2 font-medium text-[#637381] hover:bg-gray-100 hover:text-secondary px-3 py-1 rounded-md " +
-                (window.location.href.includes(item.path) ? "!text-secondary bg-gray-100" : "")
+                "block my-2 font-medium text-[#637381] hover:bg-gray-100 hover:text-semiDark px-3 py-1 rounded-md " +
+                (window.location.href.includes(item.path) ? "!text-semiDark bg-gray-100" : "")
             }
             key={item.label}
             to={item.path}
@@ -27,5 +23,5 @@ export const useFlyoutMenuService = () => {
         </NavLink>
     );
 
-    return { handleMouseLeave, renderNavLink };
+    return { renderNavLink };
 };

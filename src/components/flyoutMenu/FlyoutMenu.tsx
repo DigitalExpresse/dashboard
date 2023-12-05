@@ -9,13 +9,13 @@ const FlyoutMenu =
              position: { top?: string; right?: string; left?: string; bottom?: string; };
          }) => {
 
-    const { handleMouseLeave, renderNavLink } = useFlyoutMenuService();
+    const { renderNavLink } = useFlyoutMenuService();
 
     return (
         <div
             id={"flyoutMenu"}
             className={"absolute cursor-pointer z-50 !rounded-xl shadow border-[0.5px] border-gray-100 p-[7px] min-w-max bg-light" + (isOpen ? "" : " hidden")}
-            onMouseLeave={() => handleMouseLeave(setIsOpen)}
+            onMouseLeave={() => setIsOpen(false)}
             style={position}
         >
             {items.length > 0 && (

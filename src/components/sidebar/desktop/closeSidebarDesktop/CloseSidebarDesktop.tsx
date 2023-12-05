@@ -16,7 +16,7 @@ export function CloseSidebarDesktop() {
                 exit={{ x: -280, opacity: 0 }}
                 transition={{ type: "tween", duration: 0.3 }}
                 className={
-                    "h-screen w-[88px] z-50 focus:outline-0 bg-grayLight flex flex-col gap-3 text-textDark border-x-2 border-dotted"
+                    "h-screen w-[88px] z-50 focus:outline-0 bg-primaryBg flex flex-col gap-3 text-semiDark border-x-2 border-dotted"
                 }
             >
                 <img
@@ -38,7 +38,7 @@ export function CloseSidebarDesktop() {
 
                     <div
                         className={
-                            "absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-grayLight"
+                            "absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-primaryBg"
                         }
                         onClick={openSidebar}
                     >

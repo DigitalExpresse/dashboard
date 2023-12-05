@@ -2,10 +2,11 @@ import { useState } from "react";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
 export const useDropdownSmallService = () => {
-    const [hoveredDropdown, setHoveredDropdown] = useState(null);
-    const { currentUrl } = useUrlContext();
 
-    const handleMouseEnter = (label: any) => {
+    const [hoveredDropdown, setHoveredDropdown]: boolean | any = useState(null);
+    const { currentUrl } : string | any = useUrlContext();
+
+    const handleMouseEnter = (label: string) => {
         setHoveredDropdown(label);
     };
 

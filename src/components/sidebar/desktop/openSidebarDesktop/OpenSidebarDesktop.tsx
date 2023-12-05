@@ -17,7 +17,7 @@ export function OpenSidebarDesktop() {
             id={"sidebar"}
             tabIndex={1}
             className={
-                "h-screen w-[280px] z-50 focus:outline-0 bg-[#FAFAFAFF] px-[16px] flex flex-col gap-3 text-textDark border-2 border-dotted"
+                "h-screen w-[280px] z-50 focus:outline-0 bg-[#FAFAFAFF] px-[16px] flex flex-col gap-3 text-semiDark border-2 border-dotted"
             }
         >
             <img
@@ -43,7 +43,7 @@ export function OpenSidebarDesktop() {
 
                 <div
                     className={
-                        "absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-grayLight"
+                        "absolute z-50 top-[27px] right-[-13px] w-[24px] h-[24px] rounded-full border-2 border-dotted bg-primaryBg"
                     }
                     onClick={closeSidebar}
                 >

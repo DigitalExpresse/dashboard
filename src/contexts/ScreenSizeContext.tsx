@@ -7,6 +7,7 @@ interface ScreenSizeContextProps {
 export const ScreenSizeContext = createContext<ScreenSizeContextProps | undefined>(undefined);
 
 export const ScreenSizeConsumer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+
     const [isDesktopScreen, setIsDesktopScreen] = useState<boolean>(window.innerWidth > 1200);
 
     const handleResize = () => {

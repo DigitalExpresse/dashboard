@@ -8,6 +8,7 @@ interface UrlContextProps {
 const UrlContext = createContext<UrlContextProps | undefined>(undefined);
 
 export const UrlConsumer: React.FC<{ children: ReactNode }> = ({ children }) => {
+
     const [currentUrl, setCurrentUrl] = useState<string>(window.location.href);
 
     // Mettez à jour la valeur de l'URL chaque fois que l'URL change

@@ -16,7 +16,7 @@ const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { pat
             onMouseEnter={() => handleMouseEnter()}
             style={position}
         >
-            <div className={"block mt-2 mb-0.5 font-medium text-secondary px-3 rounded-md "}>MarcusLeRusse</div>
+            <div className={"block mt-2 mb-0.5 font-medium text-semiDark px-3 rounded-md "}>MarcusLeRusse</div>
             <div className={"block mb-3 font-medium text-[#637381] px-3 rounded-md text-sm"}>lerusse@gmail.com</div>
             <div className="border-b-2 border-gray-200 border-dotted mt-3 mb-3"></div>
 
@@ -35,6 +35,7 @@ const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { pat
                         }}
                     >
                         {"Déconnexion"}
+                        <div className={"spinner-icon"}></div>
                     </NavLink>
                 </div>
             )}

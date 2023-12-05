@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Key } from "react";
 import { NavLink } from "react-router-dom";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
+import {handleClickOutside, handleMouseEnter, handleMouseLeave} from "./flyoutMenuNavbarService.tsx";
 
 export const FlyoutMenuNavbar =
     ({
@@ -16,32 +17,15 @@ export const FlyoutMenuNavbar =
     position: { top?: string; right?: string; left?: string; bottom?: string };
 }) => {
 
-    const {setCurrentUrl} = useUrlContext();
-    const handleMouseLeave = () => {
-        setIsOpen(false);
-    };
-
-    const handleMouseEnter = () => {
-        setIsOpen(true);
-    };
-
-    // Fermer le menu lorsque l'utilisateur clique en dehors du menu
-    const handleClickOutside = (event: MouseEvent) => {
-        const target = event.target as HTMLElement;
-        const menu = document.getElementById("flyoutMenuNavbar");
-
-        if (menu && !menu.contains(target)) {
-            setIsOpen(false);
-        }
-    };
+    const {currentUrl, setCurrentUrl} = useUrlContext();
 
     useEffect(() => {
         // Ajouter un gestionnaire d'événements lors du montage
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", event => handleClickOutside(event, setIsOpen));
 
         // Nettoyer le gestionnaire d'événements lors du démontage
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", event => handleClickOutside(event, setIsOpen));
         };
     }, []);
 
@@ -52,8 +36,8 @@ export const FlyoutMenuNavbar =
                 "absolute cursor-pointer z-50 !rounded-xl shadow border-[0.5px] border-gray-100 p-[7px] min-w-max bg-light" +
                 (isOpen ? "" : " hidden")
             }
-            onMouseLeave={handleMouseLeave}
-            onMouseEnter={handleMouseEnter}
+            onMouseLeave={() => handleMouseLeave(setIsOpen)}
+            onMouseEnter={() => handleMouseEnter(setIsOpen)}
             style={position}
         >
 
@@ -68,7 +52,7 @@ export const FlyoutMenuNavbar =
                                 id={"flyoutMenu-element-" + _item.label}
                                 className={
                                     "block my-2 font-medium hover:bg-gray-100 text-secondary px-3 py-1 rounded-md " +
-                                    (window.location.href.includes(_item.path) ? "!text-secondary bg-gray-100" : "")
+                                    (currentUrl.includes(_item.path) ? "!text-secondary bg-gray-100" : "")
                                 }
                                 key={index}
                                 to={_item.path}
@@ -91,6 +75,7 @@ export const FlyoutMenuNavbar =
                         onClick={() => {
                             setIsOpen(false);
                             setCurrentUrl("/connection");
+                            localStorage.removeItem("user");
                         }}
                     >
                         {"Déconnexion"}

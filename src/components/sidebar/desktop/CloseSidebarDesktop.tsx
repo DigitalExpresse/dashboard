@@ -8,10 +8,10 @@ import {SidebarContext} from "../../../contexts/SidebarContext.tsx";
 
 export function CloseSidebarDesktop () {
 
-    const { setSidebarOpenDesktop } = useContext(SidebarContext);
+    const { setSidebarOpenDesktopIsActive } = useContext(SidebarContext);
 
     const openSidebar = () => {
-        setSidebarOpenDesktop(true);
+        setSidebarOpenDesktopIsActive(true);
     }
 
     return (

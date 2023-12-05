@@ -3,6 +3,7 @@ import FlyoutMenu from "../flyoutMenu/FlyoutMenu.tsx"; // Assurez-vous d'importe
 import "./dropdownSmall.css";
 import {useDropdownSmallContext} from "../../contexts/DropdownSmallContext.tsx";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
+import {handleMouseEnter, handleMouseLeave} from "./dropdownSmallService.tsx";
 
 interface DropdownProps {
     label: string;
@@ -13,20 +14,8 @@ interface DropdownProps {
 
 export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, principalPath }) => {
 
-    // const [isHovered, setIsHovered] = useState(false);
     const {hoveredDropdown, setHoveredDropdown} = useDropdownSmallContext();
     const {currentUrl} = useUrlContext();
-
-    const handleMouseEnter = () => {
-        setHoveredDropdown(label);
-    };
-
-    const handleMouseLeave = (e) => {
-        if (e.relatedTarget && e.relatedTarget.id === "flyoutMenu" || e.relatedTarget && e.relatedTarget.id.includes("flyoutMenu")) {
-            return;
-        }
-        setHoveredDropdown(null);
-    };
 
     return (
             <div className={"relative"}>
@@ -37,8 +26,8 @@ export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, pri
                         "flex flex-col gap-1 items-center px-[8px] py-[8px] bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer hover:bg-gray-300 hover:bg-opacity-40"
                         + (currentUrl.includes(principalPath) ? " bg-primaryLight" : "")
                     }
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={() => handleMouseEnter(setHoveredDropdown, label)}
+                    onMouseLeave={(e: any) => handleMouseLeave(e, setHoveredDropdown)}
                 >
                     {icon}
                     <p className={"font-medium !text-[10px] text-center" + (currentUrl.includes(principalPath) ? " text-primary" : "")}>

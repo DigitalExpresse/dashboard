@@ -1,59 +1,25 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FormManager } from "../../utils/FormManager.tsx";
-import { submitConnectionForm } from "./connectionFormService.tsx";
 import { CircularProgress, Link } from "@mui/material";
+import { useConnectionForm } from "./connectionFormService.tsx";
+import {FormManager} from "../../utils/FormManager.tsx";
 
 export function ConnectionForm() {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-        remember: false,
-    });
-
-    const [formErrors, setFormErrors] = useState({
-        email: "",
-        password: "",
-        invalidCredentials: false,
-        errorServeur: "",
-    });
-
-    const [loaderIsActive, setLoaderIsActive] = useState(false);
-
-    const hasInvalidCredentials = formErrors.invalidCredentials;
-
-    const navigate = useNavigate();
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        setLoaderIsActive(true);
-        try {
-            const res = await submitConnectionForm(e, setFormErrors, formData, navigate, setLoaderIsActive);
-            if (res) {
-                return res;
-            }
-        } catch (error) {
-            setFormErrors((prevErrors: any) => ({
-                ...prevErrors,
-                errorServeur: "Une erreur est survenue",
-            }));
-            setTimeout(() => {
-                setLoaderIsActive(false);
-                setFormErrors((prevErrors: any) => ({
-                    ...prevErrors,
-                    errorServeur: "",
-                }));
-            }, 2000);
-        }
-    };
+    const {
+        formData,
+        setFormData,
+        formErrors,
+        setFormErrors,
+        loaderIsActive,
+        hasInvalidCredentials,
+        handleSubmitFormConnection,
+    } = useConnectionForm();
 
     return (
         <div className={"bg-white !p-6 rounded-xl shadow-2xl w-[95%] !max-w-xl mb-24 mx-auto"}>
-
             <div className={"flex flex-col items-center"}>
                 <div className={"self-start"}>
                     <h2 className={"!font-semibold text-2xl mb-5"}>Connexion</h2>
                 </div>
-                <form onSubmit={handleSubmit} noValidate className={"!mt-1 w-full"}>
+                <form onSubmit={handleSubmitFormConnection} className={"w-full"}>
                     <div className={"flex justify-center flex-col"}>
                         <label htmlFor="email" className="mb-4 block text-sm font-medium leading-3 text-gray-900">Email</label>
                         <div>

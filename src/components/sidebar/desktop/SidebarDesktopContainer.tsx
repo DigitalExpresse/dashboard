@@ -9,14 +9,14 @@ import {useUrlContext} from "../../../contexts/UrlContext.tsx";
 
 export function SidebarDesktopContainer() {
 
-    const { sidebarOpenDesktop } = useContext(SidebarContext);
+    const { sidebarOpenDesktopIsActive } = useContext(SidebarContext);
     const {currentUrl} = useUrlContext();
 
     return (
         <div id={"sidebarDesktopContainer"} className={currentUrl.includes("connection") ? "hidden" : "relative z-40"}>
             <AnimatePresence mode="wait">
-                {!sidebarOpenDesktop && <CloseSidebarDesktop />}
-                {sidebarOpenDesktop && <OpenSidebarDesktop />}
+                {!sidebarOpenDesktopIsActive && <CloseSidebarDesktop />}
+                {sidebarOpenDesktopIsActive && <OpenSidebarDesktop />}
             </AnimatePresence>
         </div>
     );

@@ -2,12 +2,12 @@ import { Key } from "react";
 import {NavLink} from "react-router-dom";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
-const FlyoutMenu = ({ items, isOpen, setIsOpen, position }: {
-    items: { path: string; label: string }[];
-    isOpen: any;
-    setIsOpen: any;
-    position: { top?: string; right?: string; left?: string; bottom?: string; };
-}) => {
+    const FlyoutMenu = ({ items, isOpen, setIsOpen, position }: {
+        items: { path: string; label: string }[];
+        isOpen: any;
+        setIsOpen: any;
+        position: { top?: string; right?: string; left?: string; bottom?: string; };
+    }) => {
 
     const {setCurrentUrl} = useUrlContext();
 

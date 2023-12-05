@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 import { SidebarContext } from "../../../contexts/SidebarContext.tsx";
 import '../sidebar.css';
-import {CloseSidebarDesktop} from "./CloseSidebarDesktop.tsx";
-import {OpenSidebarDesktop} from "./OpenSidebarDesktop.tsx";
+import {CloseSidebarDesktop} from "./closeSidebarDesktop/CloseSidebarDesktop.tsx";
+import {OpenSidebarDesktop} from "./openSidebarDesktop/OpenSidebarDesktop.tsx";
 import {useUrlContext} from "../../../contexts/UrlContext.tsx";
 
 

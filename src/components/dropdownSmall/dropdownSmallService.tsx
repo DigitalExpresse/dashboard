@@ -1,11 +1,20 @@
+import { useState } from "react";
+import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
-export const handleMouseEnter = (setHoveredDropdown: (arg0: any) => void, label: any) => {
-    setHoveredDropdown(label);
-};
+export const useDropdownSmallService = () => {
+    const [hoveredDropdown, setHoveredDropdown] = useState(null);
+    const { currentUrl } = useUrlContext();
 
-export const handleMouseLeave = (e: any, setHoveredDropdown: (arg0: any) => void) => {
-    if (e.relatedTarget && e.relatedTarget.id === "flyoutMenu" || e.relatedTarget && e.relatedTarget.id.includes("flyoutMenu")) {
-        return;
-    }
-    setHoveredDropdown(null);
+    const handleMouseEnter = (label: any) => {
+        setHoveredDropdown(label);
+    };
+
+    const handleMouseLeave = (e: any) => {
+        if (e.relatedTarget && (e.relatedTarget.id === "flyoutMenu" || e.relatedTarget.id.includes("flyoutMenu"))) {
+            return;
+        }
+        setHoveredDropdown(null);
+    };
+
+    return { hoveredDropdown, handleMouseEnter, handleMouseLeave, currentUrl };
 };

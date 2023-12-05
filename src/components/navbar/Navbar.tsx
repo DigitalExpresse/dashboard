@@ -6,8 +6,8 @@ import './navbar.css'
 import {SidebarContext} from "../../contexts/SidebarContext.tsx";
 import {useContext, useState} from "react";
 import {ScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
-import {FlyoutMenuNavbar} from "../flyoutMenuNavbar/FlyoutMenuNavbar.tsx";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
+import FlyoutMenuNavbar from "../flyoutMenuNavbar/FlyoutMenuNavbar.tsx";
 
 const Navbar = () => {
 

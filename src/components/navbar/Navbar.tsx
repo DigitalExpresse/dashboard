@@ -1,7 +1,7 @@
 import {Avatar} from "@mui/material";
 import avatar from "../../assets/images/avatar.png";
-import MenuAltIcon from "../../icons/MenuAltIcon.tsx";
-import NotificationIcon from "../../icons/NotificationIcon.tsx";
+import MenuAltIcon from "../icons/MenuAltIcon.tsx";
+import NotificationIcon from "../icons/NotificationIcon.tsx";
 import './navbar.css'
 import {useSidebarContext} from "../../contexts/SidebarContext.tsx";
 import {useState} from "react";
@@ -23,7 +23,7 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={"flex fixed w-full pb-1 px-8 !pt-4 justify-between items-center bg-primaryBgLight backdrop-filter backdrop-blur-[10px] z-30"
+        <header className={"flex fixed w-full pb-1 px-6 !pt-4 justify-between items-center bg-primaryBgLight backdrop-filter backdrop-blur-[10px] z-30 sm:px-8"
             + (currentUrl.includes("connection") ? " hidden" : "")}
         >
 

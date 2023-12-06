@@ -1,4 +1,4 @@
-import {useUrlContext} from "../contexts/UrlContext";
+import {useUrlContext} from "../../contexts/UrlContext.tsx";
 
 const UserIcon = () => {
     const {currentUrl} = useUrlContext();

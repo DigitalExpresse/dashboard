@@ -1,5 +1,4 @@
-import './styles/App.css'
-import './styles/index.css'
+import './index.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ConnectionPage from "./pages/connectionPage/ConnectionPage.tsx";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage.tsx";
@@ -13,6 +12,8 @@ import {SidebarDesktopContainer} from "./components/sidebar/desktop/SidebarDeskt
 import Reservation from "./components/reservation/Reservation.tsx";
 import {UrlConsumer} from "./contexts/UrlContext.tsx";
 import {SpinnerPageLoadConsumer} from "./contexts/SpinnerPageLoadContext.tsx";
+import Profil from "./pages/dashboardPage/profil/Profil.tsx";
+import {NavigationMenuConsumer} from "./contexts/NavigationMenuContext.tsx";
 
 function App() {
 
@@ -23,10 +24,12 @@ function App() {
         <SpinnerPageLoadConsumer>
             <UrlConsumer>
                 <ScreenSizeConsumer>
+                    <NavigationMenuConsumer>
                         <SidebarConsumer>
                            <BrowserRouter>
 
                                 <Navbar/>
+
                                 <div className={isDesktopScreen ? "flex flex-row" : ""}>
 
                                         {isDesktopScreen && <SidebarDesktopContainer/>}
@@ -38,7 +41,7 @@ function App() {
                                         <Route path="/" element={<DashboardPage/>} />
 
                                         <Route path="/utilisateur/gestion-utilisateurs" element={<UserGestion/>} />
-                                        <Route path="/utilisateur/profil" element={<UserGestion/>} />
+                                        <Route path="/utilisateur/profil" element={<Profil/>} />
                                         <Route path="/reservation/gestion-reservations" element={<Reservation/>} />
                                     </Routes>
 
@@ -46,6 +49,7 @@ function App() {
 
                             </BrowserRouter>
                         </SidebarConsumer>
+                    </NavigationMenuConsumer>
                 </ScreenSizeConsumer>
             </UrlConsumer>
         </SpinnerPageLoadConsumer>

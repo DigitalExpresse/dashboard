@@ -1,4 +1,4 @@
-import SpinnerPageLoad from "../../animations/SpinnerPageLoad.tsx";
+import SpinnerPageLoad from "../../components/spinnerPageLoad/SpinnerPageLoad.tsx";
 import {useSpinnerPageLoadContext} from "../../contexts/SpinnerPageLoadContext.tsx";
 
 const DashboardPage = () => {

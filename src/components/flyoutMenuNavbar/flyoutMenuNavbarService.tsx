@@ -38,10 +38,7 @@ export const useFlyoutMenuNavbarService = (setIsOpen: (arg0: boolean) => void) =
     const renderNavLink = (item: any, index: Key | null | undefined) => (
         <NavLink
             id={"flyoutMenu-element-" + item.label}
-            className={
-                "block my-2 font-medium hover:bg-gray-100 text-semiDark px-3 py-1 rounded-md " +
-                (window.location.href.includes(item.path) ? "!text-semiDark bg-gray-100" : "")
-            }
+            className={"block my-2 font-medium hover:bg-gray-100 text-semiDark px-3 py-1 rounded-md"}
             key={index}
             to={item.path}
             onClick={() => {

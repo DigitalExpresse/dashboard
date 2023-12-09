@@ -2,18 +2,20 @@ import './notFoundPage.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
  const NotFoundPage = () => {
 
      const navigate = useNavigate();
-        const {setCurrentUrl} = useUrlContext();
+     const {setCurrentUrl} = useUrlContext();
 
      useEffect(() => {
             setTimeout(() => {
-                navigate("/");
-                setCurrentUrl("/");
+                navigate(UrlPath.Dashboard);
+                setCurrentUrl(UrlPath.Dashboard);
             }, 2000);
      }, []);
+
     return (
             <div className="bg-purple">
 

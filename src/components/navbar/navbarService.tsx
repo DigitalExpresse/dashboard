@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useSidebarContext} from "../../contexts/SidebarContext.tsx";
 import {useScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 import { useUrlContext } from "../../contexts/UrlContext.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
 export const useNavbarService = () => {
 
@@ -12,7 +13,7 @@ export const useNavbarService = () => {
     const [dropdownIsFocused, setDropdownIsFocused] = useState(false);
 
     const items = [
-        { path: "/utilisateur/profil", label: "Mon profil" },
+        { path: UrlPath.Profil, label: "Mon profil" },
     ];
 
     const toggleDropdownFocus = () => {

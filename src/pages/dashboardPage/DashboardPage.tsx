@@ -1,30 +1,34 @@
 import SpinnerPageLoad from "../../components/spinnerPageLoad/SpinnerPageLoad.tsx";
 import {useSpinnerPageLoadContext} from "../../contexts/SpinnerPageLoadContext.tsx";
+import {Outlet} from "react-router-dom";
+import {SidebarDesktopContainer} from "../../components/sidebar/desktop/SidebarDesktopContainer.tsx";
+import {SidebarMobileContainer} from "../../components/sidebar/mobile/SidebarMobileContainer.tsx";
+import Navbar from "../../components/navbar/Navbar.tsx";
+import {useScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 
 const DashboardPage = () => {
 
     const {isLoading, setIsLoading} = useSpinnerPageLoadContext();
+    const {isDesktopScreen} = useScreenSizeContext();
 
     setTimeout(() => {
         setIsLoading(false);
-    }, 3000);
+    }, 1000);
 
     return (
         <>
-            { isLoading ? <SpinnerPageLoad/> : null }
-            <div className={"bg-primaryBg text-semiDark w-full"} id={"dashboardPage"}>
+            <Navbar/>
 
-                <div className={"relative pb-10 pt-20 w-full h-screen overflow-y-scroll"}>
-                    <div className={"bg-green-400 h-64 w-2/3 m-auto mb-10 rounded"}></div>
-                    <div className={"bg-red-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
-                    <div className={"bg-blue-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
-                    <div className={"bg-yellow-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
-                    <div className={"bg-green-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
-                    <div className={"bg-red-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
-                    <div className={"bg-blue-400 h-64 w-2/3 m-auto my-10 rounded"}></div>
+                <div className={isDesktopScreen ? "flex flex-row" : ""}>
+
+                    { isDesktopScreen && <SidebarDesktopContainer/> }
+                    { !isDesktopScreen && <SidebarMobileContainer/> }
+
+                    { isLoading ? <SpinnerPageLoad/> : null }
+
+                    <Outlet/>
+
                 </div>
-
-            </div>
         </>
     );
 };

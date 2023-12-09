@@ -4,6 +4,7 @@ import { useUrlContext } from "../../contexts/UrlContext.tsx";
 import {fetchConnection} from "./connectionFormApi.tsx";
 import {FormManager} from "../../utils/FormManager.tsx";
 import {handleErrorResponse} from "../../utils/handleErrorResponse.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
 export const useConnectionForm = () => {
 
@@ -73,8 +74,8 @@ export const useConnectionForm = () => {
         try {
             const res = await fetchConnection(formData.email, formData.password);
             localStorage.setItem("user", JSON.stringify(res.data));
-            setCurrentUrl("/");
-            navigate("/");
+            setCurrentUrl(UrlPath.Dashboard);
+            navigate(UrlPath.Dashboard);
             return res;
         } catch (error) {
             handleErrorResponse(error, setFormErrors, setLoaderIsActive);

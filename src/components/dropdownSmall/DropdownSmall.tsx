@@ -2,11 +2,12 @@ import React from "react";
 import FlyoutMenu from "../flyoutMenu/FlyoutMenu.tsx";
 import "./dropdownSmall.css";
 import { useDropdownSmallService } from "./dropdownSmallService.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
 interface DropdownProps {
     label: string;
     icon: React.ReactNode;
-    items: { path: string; label: string }[];
+    items: { path: UrlPath; label: string }[];
     principalPath: string;
 }
 

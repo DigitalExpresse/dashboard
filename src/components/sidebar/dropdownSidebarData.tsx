@@ -1,17 +1,18 @@
 import UserIcon from "../icons/UserIcon.tsx";
 import iconReservation from "../../assets/icons/iconReservation.png";
 import MenuCardIcon from "../icons/MenuCardIcon.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
 export const dropdownUserData = {
     label: "Utilisateur",
     items: [
         {
-            path: "/utilisateur/gestion-utilisateurs",
-            label: "Utilisateurs",
+            path: UrlPath.Profil,
+            label: "Profil",
         },
         {
-            path: "/utilisateur/profil",
-            label: "Profil",
+            path: UrlPath.UserGestion,
+            label: "Utilisateurs",
         },
     ],
     principalPath : "/utilisateur",
@@ -23,19 +24,19 @@ export const dropdownReservationData = {
     label: "Reservation",
     items: [
         {
-            path: "/reservation/gestion-reservations",
+            path: UrlPath.Reservation,
             label: "Reservations",
         },
         {
-            path: "reservation/tables",
+            path: UrlPath.ReservationTable,
             label: "Tables",
         },
         {
-            path:'/reservation/services',
+            path: UrlPath.ReservationService,
             label:'Services'
         },
         {
-            path:'/reservation/horaires',
+            path: UrlPath.ReservationHoraire,
             label:'Horaires'
         }
     ],
@@ -51,15 +52,15 @@ export const dropdownMenuAndCardData = {
     label: "Produits",
     items: [
         {
-            path: "/carte-et-menu/gestion-cartes",
+            path: UrlPath.Carte,
             label: "Cartes",
         },
         {
-            path: "/carte-et-menu/gestion-menus",
+            path: UrlPath.Menu,
             label: "Menus",
         },
         {
-            path: "/carte-et-menu/gestion-produits",
+            path: UrlPath.Produit,
             label: "Produits",
         }
     ],

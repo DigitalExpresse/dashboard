@@ -12,7 +12,7 @@ export const NavigationMenuContext = createContext<NavigationMenuContextProps | 
 export const NavigationMenuConsumer: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     const [sectionName, setSectionName] = useState<string>("Dashboard")
-    const [subSectionName, setSubSectionName] = useState<string>("Test")
+    const [subSectionName, setSubSectionName] = useState<string>("")
 
     return (
         <NavigationMenuContext.Provider value={{

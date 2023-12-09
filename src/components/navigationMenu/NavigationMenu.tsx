@@ -1,10 +1,9 @@
-import {useNavigationMenuContext} from "../../contexts/NavigationMenuContext.tsx";
 import {NavLink} from "react-router-dom";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
+import {UrlPath} from "../../utils/UrlPath.tsx";
 
-const NavigationMenu = () => {
+const NavigationMenu = ({sectionName, subSectionName}: { sectionName: string, subSectionName: string }) => {
 
-    const { sectionName, subSectionName } = useNavigationMenuContext();
     const { setCurrentUrl } = useUrlContext();
 
     const linkSectionName = "/" + sectionName.toLowerCase();
@@ -16,7 +15,7 @@ const NavigationMenu = () => {
                 <h2 className={"font-bold text-2xl leading-6 mb-5 tracking-wide"}>{subSectionName}</h2>
                 <ol className={"flex items-center"}>
                     <li>
-                        <NavLink onClick={() => setCurrentUrl("/")} to={"/"}> Dashboard </NavLink>
+                        <NavLink onClick={() => setCurrentUrl(UrlPath.Dashboard)} to={UrlPath.Dashboard}> Dashboard </NavLink>
                     </li>
                     <span className={"mx-4 !text-gray-400"}>•</span>
                     <li>

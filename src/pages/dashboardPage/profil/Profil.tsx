@@ -1,11 +1,18 @@
-import NavigationMenu from "../../../components/navigationMenu/NavigationMenu.tsx";
+import {useEffect} from "react";
+import {useNavigationMenuContext} from "../../../contexts/NavigationMenuContext.tsx";
 
 const Profil = () => {
 
+    const {setSubSectionName, setSectionName} = useNavigationMenuContext();
+
+    useEffect(() => {
+        setSectionName("Utilisateur");
+        setSubSectionName("Profil");
+    }, []);
+
     return (
 
-        <div className={"relative pb-10 pt-20 w-full h-screen overflow-y-scroll px-6 sm:px-8 bg-primaryBg"}>
-             <NavigationMenu sectionName={"Utilisateur"} subSectionName={"Profil"}/>
+        <div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ export enum UrlPath {
     Profil = "/utilisateur/profil",
     UserGestion = "/utilisateur/utilisateurs",
 
-    Reservation = "/reservation/gestion-reservations",
+    Reservation = "/reservation/reservations",
     ReservationTable = "/reservation/tables",
     ReservationService = "/reservation/services",
     ReservationHoraire = "/reservation/horaires",
@@ -15,4 +15,6 @@ export enum UrlPath {
 
     Connection = "/connection",
     NotFound = "*",
+
+
 }

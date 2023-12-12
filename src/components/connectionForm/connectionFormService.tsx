@@ -82,6 +82,6 @@ export const useConnectionForm = () => {
         }
     };
 
-    return { formData, setFormData, formErrors, setFormErrors, loaderIsActive, hasInvalidCredentials, handleSubmitFormConnection };
+    return { formData, setFormData, formErrors, setFormErrors, loaderIsActive, hasInvalidCredentials, handleSubmitFormConnection, setCurrentUrl };
 };
 

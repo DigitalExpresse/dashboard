@@ -1,5 +1,5 @@
 import UserIcon from "../icons/UserIcon.tsx";
-import iconReservation from "../../assets/icons/iconReservation.png";
+import iconReservation from "../../assets/images/icons/iconReservation.png";
 import MenuCardIcon from "../icons/MenuCardIcon.tsx";
 import {UrlPath} from "../../utils/UrlPath.tsx";
 

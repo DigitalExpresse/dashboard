@@ -10,7 +10,7 @@ export const useFlyoutMenuService = () => {
             id={"flyoutMenu-element-" + item.label}
             className={
                 "block my-2 font-medium text-[#637381] hover:bg-gray-100 hover:text-semiDark px-3 py-1 rounded-md " +
-                (window.location.href.includes(item.path) ? "!text-semiDark bg-gray-100" : "")
+                (window.location.href.includes(item.path) ? "text-secondary bg-gray-100" : "")
             }
             key={item.label}
             to={item.path}

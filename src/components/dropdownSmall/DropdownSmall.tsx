@@ -22,7 +22,7 @@ export const DropdownSmall: React.FC<DropdownProps> = ({ label, icon, items, pri
                 id={"dropdown-" + label}
                 className={
                     "flex flex-col gap-1 items-center px-[8px] py-[8px] bg-opacity-40 focus:outline-0 rounded-xl cursor-pointer hover:bg-gray-300 hover:bg-opacity-40" +
-                    (currentUrl.includes(principalPath) ? " bg-primaryLight" : "")
+                    (currentUrl.includes(principalPath) ? " !bg-primaryLight" : "")
                 }
                 onMouseEnter={() => handleMouseEnter(label)}
                 onMouseLeave={(e: any) => handleMouseLeave(e)}

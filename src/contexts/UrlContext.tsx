@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import {UrlPath} from "../utils/UrlPath.tsx";
+import {UrlPathEnum} from "../utils/enums/UrlPathEnum.tsx";
 
 interface UrlContextProps {
     currentUrl: string;
-    setCurrentUrl: (url: string | UrlPath) => void;
+    setCurrentUrl: (url: string | UrlPathEnum) => void;
 }
 
 const UrlContext = createContext<UrlContextProps | undefined>(undefined);

@@ -1,6 +1,6 @@
 import { CircularProgress, Link } from "@mui/material";
 import { useConnectionForm } from "./connectionFormService.tsx";
-import {FormManager} from "../../utils/FormManager.tsx";
+import {FormManager} from "../../utils/class/FormManager.tsx";
 
 export function ConnectionForm() {
 

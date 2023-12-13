@@ -1,4 +1,4 @@
-export enum UrlPath {
+export enum UrlPathEnum {
     Dashboard = "/",
 
     Profil = "/utilisateur/profil",

@@ -8,7 +8,7 @@ import {useState} from "react";
 import {useScreenSizeContext} from "../../contexts/ScreenSizeContext.tsx";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
 import FlyoutMenuNavbar from "../flyoutMenuNavbar/FlyoutMenuNavbar.tsx";
-import {UrlPath} from "../../utils/UrlPath.tsx";
+import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
 const Navbar = () => {
 
@@ -20,7 +20,7 @@ const Navbar = () => {
 
 
     const items = [
-        { path: UrlPath.Profil, label: "Mon profil" },
+        { path: UrlPathEnum.Profil, label: "Mon profil" },
     ];
 
     return (

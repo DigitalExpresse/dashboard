@@ -2,7 +2,7 @@ import './notFoundPage.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
-import {UrlPath} from "../../utils/UrlPath.tsx";
+import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
  const NotFoundPage = () => {
 
@@ -11,8 +11,8 @@ import {UrlPath} from "../../utils/UrlPath.tsx";
 
      useEffect(() => {
             setTimeout(() => {
-                navigate(UrlPath.Dashboard);
-                setCurrentUrl(UrlPath.Dashboard);
+                navigate(UrlPathEnum.Dashboard);
+                setCurrentUrl(UrlPathEnum.Dashboard);
             }, 2000);
      }, []);
 

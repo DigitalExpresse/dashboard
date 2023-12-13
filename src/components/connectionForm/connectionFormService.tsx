@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUrlContext } from "../../contexts/UrlContext.tsx";
 import {fetchConnection} from "./connectionFormApi.tsx";
-import {FormManager} from "../../utils/FormManager.tsx";
-import {handleErrorResponse} from "../../utils/handleErrorResponse.tsx";
-import {UrlPath} from "../../utils/UrlPath.tsx";
+import {FormManager} from "../../utils/class/FormManager.tsx";
+import {handleErrorResponse} from "../../utils/function/handleErrorResponse.tsx";
+import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
 export const useConnectionForm = () => {
 
@@ -74,8 +74,8 @@ export const useConnectionForm = () => {
         try {
             const res = await fetchConnection(formData.email, formData.password);
             localStorage.setItem("user", JSON.stringify(res.data));
-            setCurrentUrl(UrlPath.Dashboard);
-            navigate(UrlPath.Dashboard);
+            setCurrentUrl(UrlPathEnum.Dashboard);
+            navigate(UrlPathEnum.Dashboard);
             return res;
         } catch (error) {
             handleErrorResponse(error, setFormErrors, setLoaderIsActive);

@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {useUrlContext} from "../../contexts/UrlContext.tsx";
-import {UrlPath} from "../../utils/UrlPath.tsx";
+import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 import {useNavigationMenuContext} from "../../contexts/NavigationMenuContext.tsx";
 
 const NavigationMenu = () => {
@@ -16,7 +16,7 @@ const NavigationMenu = () => {
                 <h2 className={"font-bold text-2xl leading-6 mb-5 tracking-wide"}>{subSectionName}</h2>
                 <ol className={"flex items-center"}>
                     <li>
-                        <NavLink onClick={() => setCurrentUrl(UrlPath.Dashboard)} to={UrlPath.Dashboard}> Dashboard </NavLink>
+                        <NavLink onClick={() => setCurrentUrl(UrlPathEnum.Dashboard)} to={UrlPathEnum.Dashboard}> Dashboard </NavLink>
                     </li>
                     <span className={"mx-4 !text-gray-400"}>•</span>
                     <li>

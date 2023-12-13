@@ -1,7 +1,7 @@
 import { Key } from "react";
 import { useFlyoutMenuNavbarService } from "./flyoutMenuNavbarService.tsx";
 import {NavLink} from "react-router-dom";
-import {UrlPath} from "../../utils/UrlPath.tsx";
+import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
 const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { path: string; label: string }[]; isOpen: boolean; setIsOpen: (arg0: boolean) => void; position: { top?: string; right?: string; left?: string; bottom?: string }; }) => {
     const { handleMouseLeave, handleMouseEnter, renderNavLink, setCurrentUrl} = useFlyoutMenuNavbarService(setIsOpen);
@@ -28,10 +28,10 @@ const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { pat
                     <NavLink
                         id={"flyoutMenu-element-" + "Déconnexion"}
                         className={"block my-2 font-medium text-danger hover:bg-gray-100 px-3 py-1 rounded-md "}
-                        to={"/connection"}
+                        to={UrlPathEnum.Connection}
                         onClick={() => {
                             setIsOpen(false);
-                            setCurrentUrl(UrlPath.Connection);
+                            setCurrentUrl(UrlPathEnum.Connection);
                             localStorage.removeItem("user");
                         }}
                     >

@@ -13,7 +13,7 @@ import {ScreenSizeConsumer} from "./contexts/ScreenSizeContext.tsx";
 import {UrlConsumer} from "./contexts/UrlContext.tsx";
 import {SpinnerPageLoadConsumer} from "./contexts/SpinnerPageLoadContext.tsx";
 import {NavigationMenuConsumer} from "./contexts/NavigationMenuContext.tsx";
-import {UrlPath} from "./utils/UrlPath.tsx";
+import {UrlPathEnum} from "./utils/enums/UrlPathEnum.tsx";
 
 function App() {
 
@@ -27,12 +27,12 @@ function App() {
                                 <BrowserRouter>
 
                                     <Routes>
-                                        <Route path={UrlPath.NotFound} element={<NotFoundPage/>}/>
-                                        <Route path={UrlPath.Connection} element={<ConnectionPage/>}/>
-                                        <Route path={UrlPath.Dashboard} element={<DashboardPage/>}>
-                                            <Route path={UrlPath.UserGestion} element={<UserGestion/>}/>
-                                            <Route path={UrlPath.Profil} element={<Profil/>}/>
-                                            <Route path={UrlPath.Reservation} element={<Reservation/>}/>
+                                        <Route path={UrlPathEnum.NotFound} element={<NotFoundPage/>}/>
+                                        <Route path={UrlPathEnum.Connection} element={<ConnectionPage/>}/>
+                                        <Route path={UrlPathEnum.Dashboard} element={<DashboardPage/>}>
+                                            <Route path={UrlPathEnum.UserGestion} element={<UserGestion/>}/>
+                                            <Route path={UrlPathEnum.Profil} element={<Profil/>}/>
+                                            <Route path={UrlPathEnum.Reservation} element={<Reservation/>}/>
                                         </Route>
                                     </Routes>
 

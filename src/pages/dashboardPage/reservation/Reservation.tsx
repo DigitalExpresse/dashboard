@@ -5,6 +5,7 @@ import DeleteIcon from "../../../components/icons/DeleteIcon.tsx";
 import { StatusEnum } from "../../../utils/enums/StatusEnum.tsx";
 import React, {SetStateAction, useState} from "react";
 import {KeyboardArrowLeft, KeyboardArrowRight} from "@mui/icons-material";
+import {scrollScreenToBottom} from "../../../utils/function/utils.tsx";
 
 const Reservation = () => {
     const {
@@ -273,21 +274,18 @@ const ArrayFooter = ({entitiesPerPage, setEntitiesPerPage, reservationList, pagi
 
     const [showArrowEffect, setShowArrowEffect] : React.ComponentState = useState(null);
 
-    const handleLeftArrowClick = () => {
-        if (indexOfFirstEntity > 0) {
+    const handleArrowClick = (direction: string) => {
+        if (direction === "left" && indexOfFirstEntity > 0) {
             paginate(currentPage - 1);
             setShowArrowEffect("left");
             setTimeout(() => setShowArrowEffect(null), 300);
-        }
-    };
-
-    const handleRightArrowClick = () => {
-        if (indexOfLastEntity < reservationList.length) {
+        } else if (direction === "right" && indexOfLastEntity < reservationList.length) {
             paginate(currentPage + 1);
             setShowArrowEffect("right");
             setTimeout(() => setShowArrowEffect(null), 300);
         }
-    };
+        scrollScreenToBottom();
+    }
 
     return (
 
@@ -301,6 +299,7 @@ const ArrayFooter = ({entitiesPerPage, setEntitiesPerPage, reservationList, pagi
                 onChange={(e) => {
                     setEntitiesPerPage(Number(e.target.value))
                     setCurrentPage(1)
+                    scrollScreenToBottom()
                 }}
                 value={entitiesPerPage}
             >
@@ -316,10 +315,10 @@ const ArrayFooter = ({entitiesPerPage, setEntitiesPerPage, reservationList, pagi
                 {indexOfFirstEntity + 1} - {indexOfLastEntity > reservationList.length ? reservationList.length : indexOfLastEntity} sur {reservationList.length}</p>
             <div className="flex gap-2">
                 <div
-                    className={`flex justify-center gap-2 rounded-full ${
+                    className={`flex justify-center gap-2 rounded-full p-2 ${
                         indexOfFirstEntity === 0 ? 'opacity-50' : 'cursor-pointer'
                     }`}
-                    onClick={handleLeftArrowClick}
+                    onClick={handleArrowClick.bind(null, "left")}
                     style={{
                         background: showArrowEffect ==="left" ? '#f2f2f2' : 'transparent', // Changement de couleur de fond temporaire
                         transition: 'background 0.3s ease', // Animation de transition
@@ -328,10 +327,10 @@ const ArrayFooter = ({entitiesPerPage, setEntitiesPerPage, reservationList, pagi
                     <KeyboardArrowLeft />
                 </div>
                 <div
-                    className={`flex justify-center gap-2 rounded-full ${
+                    className={`flex justify-center gap-2 rounded-full p-2 ${
                         indexOfLastEntity >= reservationList.length ? 'opacity-50' : 'cursor-pointer'
                     }`}
-                    onClick={handleRightArrowClick}
+                    onClick={handleArrowClick.bind(null, "right")}
                     style={{
                         background: showArrowEffect === "right" ? '#cbcbcb' : 'transparent', // Changement de couleur de fond temporaire
                         transition: 'background 0.3s ease', // Animation de transition

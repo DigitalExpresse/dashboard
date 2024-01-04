@@ -3,16 +3,16 @@ import { useFlyoutMenuNavbarService } from "./flyoutMenuNavbarService.tsx";
 import {NavLink} from "react-router-dom";
 import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
-const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { path: string; label: string }[]; isOpen: boolean; setIsOpen: (arg0: boolean) => void; position: { top?: string; right?: string; left?: string; bottom?: string }; }) => {
+const FlyoutMenuNavbar = ({ items, dropdownIsFocused, setDropdownIsFocused, position, avatarRef }: { items: { path: string; label: string }[]; dropdownIsFocused: boolean; setDropdownIsFocused: (arg0: boolean) => void; position: { top?: string; right?: string; left?: string; bottom?: string }, avatarRef: any; }) => {
 
-    const { handleMouseLeave, handleMouseEnter, renderNavLink, setCurrentUrl} = useFlyoutMenuNavbarService(setIsOpen);
+    const { handleMouseLeave, handleMouseEnter, renderNavLink, setCurrentUrl} = useFlyoutMenuNavbarService(setDropdownIsFocused, avatarRef );
 
     return (
         <div
             id="flyoutMenuNavbar"
             className={
                 "absolute cursor-pointer z-50 !rounded-xl shadow border-[0.5px] border-gray-100 p-[7px] min-w-max bg-light" +
-                (isOpen ? "" : " hidden")
+                (dropdownIsFocused ? "" : " hidden")
             }
             onMouseLeave={() => handleMouseLeave()}
             onMouseEnter={() => handleMouseEnter()}
@@ -31,7 +31,7 @@ const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { pat
                         className={"block my-2 font-medium text-danger hover:bg-gray-100 px-3 py-1 rounded-md "}
                         to={UrlPathEnum.Connection}
                         onClick={() => {
-                            setIsOpen(false);
+                            setDropdownIsFocused(false);
                             setCurrentUrl(UrlPathEnum.Connection);
                             localStorage.removeItem("user");
                         }}

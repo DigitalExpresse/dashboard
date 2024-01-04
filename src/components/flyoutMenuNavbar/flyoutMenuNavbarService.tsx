@@ -3,7 +3,7 @@ import { Key } from "react";
 import { NavLink } from "react-router-dom";
 import { useUrlContext } from "../../contexts/UrlContext.tsx";
 
-export const useFlyoutMenuNavbarService = (setIsOpen: (arg0: boolean) => void) => {
+export const useFlyoutMenuNavbarService = (setDropdownIsFocused: (arg0: boolean) => void, avatarRef) => {
 
     const { setCurrentUrl } = useUrlContext();
 
@@ -18,11 +18,11 @@ export const useFlyoutMenuNavbarService = (setIsOpen: (arg0: boolean) => void) =
     }, []);
 
     const handleMouseLeave = () => {
-        setIsOpen(false);
+        setDropdownIsFocused(false);
     };
 
     const handleMouseEnter = () => {
-        setIsOpen(true);
+        setDropdownIsFocused(true);
     };
 
     // Fermer le menu lorsque l'utilisateur clique en dehors du menu
@@ -30,8 +30,8 @@ export const useFlyoutMenuNavbarService = (setIsOpen: (arg0: boolean) => void) =
         const target = event.target as HTMLElement;
         const menu = document.getElementById("flyoutMenuNavbar");
 
-        if (menu && !menu.contains(target)) {
-            setIsOpen(false);
+        if (menu && !menu.contains(target) && !avatarRef.current.contains(target)) {
+            setDropdownIsFocused(false);
         }
     };
 
@@ -42,7 +42,7 @@ export const useFlyoutMenuNavbarService = (setIsOpen: (arg0: boolean) => void) =
             key={index}
             to={item.path}
             onClick={() => {
-                setIsOpen(false);
+                setDropdownIsFocused(false);
                 setCurrentUrl(item.path);
             }}
         >

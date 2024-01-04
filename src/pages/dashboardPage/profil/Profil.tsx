@@ -13,6 +13,11 @@ const Profil = () => {
     return (
 
         <div>
+        {/*    un select*/}
+            <select name="cars" id="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+            </select>
         </div>
     );
 };

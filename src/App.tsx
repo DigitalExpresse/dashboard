@@ -18,7 +18,7 @@ import {UrlPathEnum} from "./utils/enums/UrlPathEnum.tsx";
 function App() {
 
     return (
-        <>
+        <div className={"bg-primaryBg"}>
             <SpinnerPageLoadConsumer>
                 <UrlConsumer>
                     <ScreenSizeConsumer>
@@ -42,7 +42,7 @@ function App() {
                     </ScreenSizeConsumer>
                 </UrlConsumer>
             </SpinnerPageLoadConsumer>
-        </>
+        </div>
     )
 }
 

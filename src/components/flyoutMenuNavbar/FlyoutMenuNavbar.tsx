@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {UrlPathEnum} from "../../utils/enums/UrlPathEnum.tsx";
 
 const FlyoutMenuNavbar = ({ items, isOpen, setIsOpen, position }: { items: { path: string; label: string }[]; isOpen: boolean; setIsOpen: (arg0: boolean) => void; position: { top?: string; right?: string; left?: string; bottom?: string }; }) => {
+
     const { handleMouseLeave, handleMouseEnter, renderNavLink, setCurrentUrl} = useFlyoutMenuNavbarService(setIsOpen);
 
     return (

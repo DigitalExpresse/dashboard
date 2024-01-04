@@ -1,6 +1,6 @@
 export enum StatusEnum {
-    PENDING = 'Pending',
-    RESOLVED = 'Resolved',
-    REJECTED = 'Rejected',
-    ALL = 'All',
+    PENDING = 'Attente',
+    CONFIRMATE = 'Confirmer',
+    REFUSED = 'Refuser',
+    ALL = 'Tous',
 }

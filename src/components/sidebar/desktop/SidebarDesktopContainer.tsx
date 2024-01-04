@@ -12,12 +12,23 @@ export function SidebarDesktopContainer() {
     const {currentUrl} = useUrlContext();
 
     return (
-        <div id={"sidebarDesktopContainer"} className={currentUrl.includes("connection") ? "hidden" : "relative z-40"}>
-            <AnimatePresence mode="wait">
-                {!sidebarOpenDesktopIsActive && <CloseSidebarDesktop />}
-                {sidebarOpenDesktopIsActive && <OpenSidebarDesktop />}
-            </AnimatePresence>
-        </div>
+        <>
+
+            {
+                sidebarOpenDesktopIsActive ?
+                <div className="w-[370px] bg-primaryBg"></div>
+                :
+                <div className="w-[88px] bg-primaryBg"></div>
+            }
+
+            <div id={"sidebarDesktopContainer"} className={currentUrl.includes("connection") ? "hidden" : "z-40 fixed"}>
+                <AnimatePresence mode="wait">
+                    {!sidebarOpenDesktopIsActive && <CloseSidebarDesktop/>}
+                    {sidebarOpenDesktopIsActive && <OpenSidebarDesktop/>}
+                </AnimatePresence>
+            </div>
+        </>
+
     );
 }
 

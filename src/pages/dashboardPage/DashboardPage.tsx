@@ -24,7 +24,7 @@ const DashboardPage = () => {
     }, []);
 
     return (
-        <>
+        <div >
             <Navbar/>
 
             <div className={isDesktopScreen ? "flex flex-row" : ""}>
@@ -32,15 +32,15 @@ const DashboardPage = () => {
                 {isDesktopScreen && <SidebarDesktopContainer/>}
                 {!isDesktopScreen && <SidebarMobileContainer/>}
 
-                {isLoading ? <SpinnerPageLoad/> : null}
-
-                <div className={"relative pb-10 pt-20 w-full h-screen overflow-y-scroll px-6 sm:px-8 bg-primaryBg"}>
+                <div className={"relative pb-10 w-full px-6 sm:px-8 xl:px-20"}>
+                    <div className={"h-[65px] bg-primaryBgLight w-full"}></div>
+                    {isLoading ? <SpinnerPageLoad/> : null}
                     {currentUrl !== "/" && <NavigationMenu/>}
                     <Outlet/>
                 </div>
 
             </div>
-        </>
+        </div>
     );
 };
 
